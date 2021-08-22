@@ -86,7 +86,7 @@ header h2 {
 
 .posts {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 30px;
   margin-top: 30px;
 }
@@ -94,11 +94,13 @@ header h2 {
 .card {
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-color: steelblue;
 }
 
 .card-page {
   padding: 15px 30px;
+  border-style: none;
 }
 
 .post-title {
@@ -107,9 +109,11 @@ header h2 {
 }
 
 .post-date {
-  background: #f4f4f4;
+  background: steelblue;
+  color: white;
   margin-bottom: 20px;
   padding: 3px 10px;
+  border-radius: 5px;
 }
 
 .post-body ul,
