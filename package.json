@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "chakra": "0.0.3",
+    "@chakra-ui/core": "^1.0.0-rc.8",
+    "@chakra-ui/icons": "^1.0.15-next.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "framer-motion": "^3.10.6",
     "gray-matter": "^4.0.3",
     "marker": "^0.1.2",
     "next": "11.1.0",

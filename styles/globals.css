@@ -36,6 +36,12 @@ header a {
   color: #fff;
 }
 
+header h2 {
+  max-width: fit-content;
+  cursor: pointer;
+  align-items: left;
+}
+
 .container {
   max-width: 768px;
   margin: auto;
@@ -48,7 +54,7 @@ header a {
   margin: auto;
   overflow: auto;
   padding: 0 10px;
-  cursor: pointer;
+  align-items: left;
 }
 
 .btn {
@@ -97,6 +103,7 @@ header a {
 
 .post-title {
   margin: 10px 0;
+  align-items: center;
 }
 
 .post-date {
