@@ -1,14 +1,16 @@
-import Header from "../components/Header";
 import {
   ChakraProvider,
   ColorModeProvider,
   useColorMode,
+  useToken,
 } from "@chakra-ui/react";
-import customTheme from "../styles/theme";
+import customTheme from "@styles/theme";
 import { Global, css } from "@emotion/react";
 
 const GlobalStyle = ({ children }) => {
   const { colorMode } = useColorMode();
+
+  const [primary, highlight] = useToken("colors", ["primary", "highlight"]);
 
   return (
     <>
@@ -37,7 +39,7 @@ const GlobalStyle = ({ children }) => {
             line-height: 2;
             font-weight: bold;
             margin: 10px 0;
-            color: ${colorMode === "light" ? "#845EC2" : "#00C9A7"}
+            color: ${colorMode === "light" ? primary : highlight}
             
           }
           p {
@@ -46,7 +48,7 @@ const GlobalStyle = ({ children }) => {
           }
           hr {
             line-height: 2;
-            color: ${colorMode === "light" ? "#845EC2" : "#00C9A7"}
+            color: ${colorMode === "light" ? primary : highlight}
           }
 
           }

@@ -1,11 +1,9 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import Head from "next/head";
-import Post from "../components/Post";
-import { sortByDate } from "../utils";
-import Container from "../components/Container";
-import Header from "../components/Header";
+import Post from "@components/Post";
+import { sortByDate } from "@utils/index";
+import Container from "@components/Container";
 
 const Home = ({ posts }) => {
   return (

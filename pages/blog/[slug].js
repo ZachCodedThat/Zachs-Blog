@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import marked from "marked";
 import NextLink from "next/link";
-import Container from "../../components/Container";
+import Container from "@components/Container";
 import {
   useColorMode,
   Heading,
