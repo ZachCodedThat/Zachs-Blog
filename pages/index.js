@@ -4,20 +4,20 @@ import path from "path";
 import Head from "next/head";
 import Post from "../components/Post";
 import { sortByDate } from "../utils";
+import Container from "../components/Container";
+import Header from "../components/Header";
 
 const Home = ({ posts }) => {
   return (
-    <div>
-      <Head>
-        <title>Zachs Blog</title>
-      </Head>
-
-      <div className="posts">
-        {posts.map((post, index) => (
-          <Post post={post} key={index} />
-        ))}
-      </div>
-    </div>
+    <>
+      <Container>
+        <div>
+          {posts.map((post, index) => (
+            <Post post={post} key={index} />
+          ))}
+        </div>
+      </Container>
+    </>
   );
 };
 
@@ -46,8 +46,6 @@ export async function getStaticProps() {
       frontmatter,
     };
   });
-
-  console.log(posts);
 
   return {
     props: {
