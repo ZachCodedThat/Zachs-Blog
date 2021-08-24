@@ -2,28 +2,90 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import marked from "marked";
-import Link from "next/link";
+import NextLink from "next/link";
+import Container from "@components/Container";
+import {
+  useColorMode,
+  Heading,
+  Text,
+  Flex,
+  Box,
+  Link,
+  Image,
+  Button,
+  Stack,
+} from "@chakra-ui/react";
 
 const PostPage = ({ frontmatter: { title, date, cover_image }, content }) => {
   // frontmatter and content are props from getStaticProps.
+  const { colorMode } = useColorMode();
+  const color = {
+    light: "primary",
+    dark: "highlight",
+  };
+  const navHoverBg = {
+    light: "primary",
+    dark: "highlight",
+  };
 
   return (
-    <>
-      <Link href="/">
-        <a href="btn btn-back" className="btn">
-          Go Back
-        </a>
-      </Link>
-      <div className="card card-page">
-        <h1 className="post-title">{title}</h1>
-      </div>
-      <div className="post-date">Posted on {date}</div>
-      <img src={cover_image} alt="" />
-      <div
-        className="post-body"
-        dangerouslySetInnerHTML={{ __html: marked(content) }}
-      ></div>
-    </>
+    <Container>
+      <Stack
+        as="main"
+        borderRadius="10px"
+        spacing={7}
+        justifyContent="center"
+        alignItems="flex-start"
+        m="0 auto 4rem auto"
+        maxWidth="100%"
+        px={2}
+      >
+        <NextLink href="/">
+          <Box>
+            <Button
+              size="md"
+              variant="ghost"
+              cursor="pointer"
+              marginBottom="5px"
+              _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+              as="a"
+            >
+              Back
+            </Button>
+          </Box>
+        </NextLink>
+        <Flex className="card card-page">
+          <Heading fontSize="6xl">{title} </Heading>
+        </Flex>
+        <Text
+          bg={color[colorMode]}
+          color="black"
+          as="date"
+          padding="5px"
+          width="100%"
+          fontSize="xl"
+        >
+          Posted on {date}
+        </Text>
+
+        <Image
+          src={cover_image}
+          alt=""
+          padding="10px"
+          width="80%"
+          alignSelf="center"
+        />
+
+        <Flex
+          as="post-body"
+          width="100%"
+          align="flex-start"
+          justifyContent="space-between"
+          flexDirection={["column", "row"]}
+          dangerouslySetInnerHTML={{ __html: marked(content) }}
+        ></Flex>
+      </Stack>
+    </Container>
   );
 };
 
