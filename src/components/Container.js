@@ -46,6 +46,21 @@ const Container = ({ children }) => {
               Zachs Blog
             </Button>
           </NextLink>
+          <NextLink
+            href="/blogPost
+          "
+            passHref
+          >
+            <Button
+              size="lg"
+              as="a"
+              variant="ghost"
+              cursor="pointer"
+              _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+            >
+              Create Post
+            </Button>
+          </NextLink>
         </Box>
         <DarkModeSwitch />
       </StickyNav>
