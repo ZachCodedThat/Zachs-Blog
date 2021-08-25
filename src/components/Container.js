@@ -47,6 +47,21 @@ const Container = ({ children }) => {
             </Button>
           </NextLink>
           <NextLink
+            href="/blogview
+          "
+            passHref
+          >
+            <Button
+              size="lg"
+              as="a"
+              variant="ghost"
+              cursor="pointer"
+              _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+            >
+              View Post
+            </Button>
+          </NextLink>
+          <NextLink
             href="/blogPost
           "
             passHref

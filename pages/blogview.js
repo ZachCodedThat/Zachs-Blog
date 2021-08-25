@@ -1,13 +1,14 @@
 import React from "react";
 import Container from "@components/Container";
 import { Flex } from "@chakra-ui/react";
-import CreatePost from "@components/CreatePost";
+
+import ViewPost from "@components/ViewPost";
 
 const BlogPost = () => {
   return (
     <Container>
       <Flex>
-        <CreatePost />
+        <ViewPost />
       </Flex>
     </Container>
   );

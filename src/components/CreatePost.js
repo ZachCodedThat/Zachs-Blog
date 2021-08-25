@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import fire from "src/fire-config";
+import Editor from "./MarkdownEditor";
+
+import "react-markdown-editor-lite/lib/index.css";
+
 import {
   useColorMode,
   Heading,
@@ -18,19 +23,30 @@ import {
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [text, setText] = useState("");
   const [date, setDate] = useState("");
+  const [notification, setNotification] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    fire.firestore().collection("blog").add({
+      title: title,
+      text: text,
+      date: date,
+    });
     console.log({
       title: title,
+      text: text,
       date: date,
-      content: content,
     });
     setTitle("");
-    setContent("");
+    setText("");
     setDate("");
+    setNotification("Blogpost created");
+    setTimeout(() => {
+      setNotification("");
+    }, 4000);
   };
 
   const { colorMode } = useColorMode();
@@ -44,11 +60,13 @@ const CreatePost = () => {
   };
   return (
     <Stack>
-      <Heading>Add Blog</Heading>
+      <Heading color={color[colorMode]}>Add Blog</Heading>
+      <Box>{notification}</Box>
+
       <form onSubmit={handleSubmit}>
         <FormControl id="title" isRequired>
           <Box>
-            <FormLabel>Title</FormLabel>
+            <FormLabel color={color[colorMode]}>Title</FormLabel>
             <Input
               color={color[colorMode]}
               type="text"
@@ -58,7 +76,7 @@ const CreatePost = () => {
           </Box>
         </FormControl>
 
-        <FormControl id="date" isRequired>
+        <FormControl id="Date" isRequired>
           <Box>
             <FormLabel color={color[colorMode]}>Date</FormLabel>
             <Input
@@ -69,16 +87,15 @@ const CreatePost = () => {
             />
           </Box>
         </FormControl>
-        <FormControl id="body" isRequired>
-          <Box>
-            <FormLabel color={color[colorMode]}>Body</FormLabel>
-            <Input
+        <FormControl isRequired>
+          <FormLabel color={color[colorMode]}>Body</FormLabel>
+          {/* <Input
               color={color[colorMode]}
               type="body"
               value={content}
               onChange={({ target }) => setContent(target.value)}
-            />
-          </Box>
+            /> */}
+          <Editor />
         </FormControl>
         <Button
           size="lg"
