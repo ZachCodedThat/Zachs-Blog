@@ -39,22 +39,17 @@ Here is my **[GitHub](https://github.com/ZachCodedThat?tab=repositories)** so yo
 
 Debugging takes many forms but I have noticed in this instance it boils down to a few main points.
 
-      - Something is out of place.
-      - I didn't implement it right.
-      - Something is clashing.
-      - I spelled it wrong.
+&nbsp;&nbsp;Something is out of place.
 
-Again I am underplaying things and there are thousands of ways a program can break but those things are the main reasons I wanted to throw my keyboard at the wall while working with Chakra and this project as a whole. However these issues allowed me to work with and get comfortable using all the various tools provided to pin point the problem and work on a fix, things like
+&nbsp;&nbsp;I didn't implement it right.
 
-    - Console.Log()
-      + simple but effective to see what information is being sent where and what it looks like when it gets there.
-    - Chrome dev tools.
-      + intimidating at first the dev tools can pin point a problem the moment you hit save, pin pointing exactly what file and usually what line is causing the issue.
-      + I also worked a little bit with the network tab which showed me the flow of information in and out of my project. Though I am not super comfortable navigating it yet.
-    - The terminal
-      + It really will just say nah dummy here's where you messed up and what I don't like about it
+&nbsp;&nbsp;Something is clashing.
 
-What this has also taught me is how to ask the right questions to Google or someone helping me work through an issue. Being able to properly explain the issue you are having is half the battle in trying to solve it, Google is only as good as the questions you ask it. Unless you are on the bleeding edge of new frameworks and tools there is likely someone who has experienced your issue and have worked a solution out or can at least provide better insight on where to look for one.
+&nbsp;&nbsp;I spelled it wrong.
+
+Again I am underplaying things and there are thousands of ways a program can break but those things are the main reasons I wanted to throw my keyboard at the wall while working with Chakra and this project as a whole. However these issues allowed me to work with and get comfortable using all the various tools provided to pin point the problem and work on a fix, things like Console.log() , Chrome Dev Tools and the terminal.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What this has also taught me is how to ask the right questions to Google or someone helping me work through an issue. Being able to properly explain the issue you are having is half the battle in trying to solve it, Google is only as good as the questions you ask it. Unless you are on the bleeding edge of new frameworks and tools there is likely someone who has experienced your issue and have worked a solution out or can at least provide better insight on where to look for one.
 
 ---
 
