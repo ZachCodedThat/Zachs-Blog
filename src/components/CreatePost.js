@@ -17,8 +17,6 @@ import {
   Input,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
 } from "@chakra-ui/react";
 
 const CreatePost = () => {
