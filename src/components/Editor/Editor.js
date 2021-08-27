@@ -1,33 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
-import { useColorMode } from "@chakra-ui/react";
 
-const Editor = () => {
-  const editor = useMemo(() => withReact(createEditor()), []);
-  const [value, setValue] = useState([
-    {
-      type: "paragraph",
-      children: [{ text: "" }],
-    },
-  ]);
-  const { colorMode } = useColorMode();
-
-  const color = {
-    light: "black",
-    dark: "white",
-  };
+export default function Editor({ value, setValue }) {
+  const editor = React.useMemo(() => withReact(createEditor()), []);
 
   return (
     <Slate
-      color={color[colorMode]}
       editor={editor}
       value={value}
       onChange={(newValue) => setValue(newValue)}
     >
       <Editable
         spellCheck="false"
-        placeholder="Start typing your post..."
+        placeholder="Get to typing"
         onKeyDown={(event) => {
           if (event.key === "&") {
             // Prevent the ampersand character from being inserted.
@@ -39,6 +25,4 @@ const Editor = () => {
       />
     </Slate>
   );
-};
-
-export default Editor;
+}

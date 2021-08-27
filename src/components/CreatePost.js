@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import slugify from "@utils/slugify";
 
 import Editor from "./Editor";
 
@@ -19,9 +20,31 @@ import {
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [notification, setNotification] = useState("");
+  const [body, setBody] = useState([
+    { type: "paragraph", children: [{ text: "", marks: "" }] },
+  ]);
+
+  const createPost = async (e) => {
+    e.preventDefault();
+
+    if (!title || !date || !body || !description) {
+      return;
+    }
+    console.log("firing");
+    await fetch("/api/blogPosts/", {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        date,
+        description,
+        body,
+        slug: slugify(title),
+      }),
+    });
+    console.log("firing");
+  };
 
   const { colorMode } = useColorMode();
   const color = {
@@ -35,9 +58,8 @@ const CreatePost = () => {
   return (
     <Stack direction="column" minW="900px">
       <Heading color={color[colorMode]}>Add Blog</Heading>
-      <Box>{notification}</Box>
 
-      <form>
+      <form onSubmit={createPost}>
         <FormControl id="title" isRequired>
           <Box>
             <FormLabel color={color[colorMode]}>Title</FormLabel>
@@ -49,7 +71,15 @@ const CreatePost = () => {
             />
           </Box>
         </FormControl>
-
+        <Box>
+          <FormLabel color={color[colorMode]}>Description</FormLabel>
+          <Input
+            color={color[colorMode]}
+            type="text"
+            value={description}
+            onChange={({ target }) => setDescription(target.value)}
+          />
+        </Box>
         <FormControl id="Date" isRequired>
           <Box>
             <FormLabel color={color[colorMode]}>Date</FormLabel>
@@ -71,7 +101,7 @@ const CreatePost = () => {
             color="black"
             p={4}
           >
-            <Editor />
+            <Editor value={body} setValue={setBody} />
           </Box>
         </FormControl>
         <Button
