@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import slugify from "@utils/slugify";
 
-import Editor from "./Editor";
+import SlateEditor from "./Editor";
 
 import {
   useColorMode,
@@ -55,6 +55,10 @@ const CreatePost = () => {
     light: "primary",
     dark: "highlight",
   };
+  const bgColor = {
+    light: "primary",
+    dark: "highlight",
+  };
   return (
     <Stack direction="column" minW="900px">
       <Heading color={color[colorMode]}>Add Blog</Heading>
@@ -93,15 +97,15 @@ const CreatePost = () => {
         </FormControl>
         <FormControl isRequired>
           <Box
-            bg="white"
-            h="400px"
             mt={4}
-            border="2px solid black"
+            border="2px solid "
+            bg={colorMode === "light" ? "white" : "#171717"}
+            borderColor={color[colorMode]}
             wrap="wrap"
-            color="black"
+            color={colorMode === "light" ? "black" : "white"}
             p={4}
           >
-            <Editor value={body} setValue={setBody} />
+            <SlateEditor value={body} setValue={setBody} />
           </Box>
         </FormControl>
         <Button

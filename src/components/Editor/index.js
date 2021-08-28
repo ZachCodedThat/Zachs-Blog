@@ -1,3 +1,3 @@
-import Editor from "./Editor";
+import SlateEditor from "./Editor";
 
-export default Editor;
+export default SlateEditor;
