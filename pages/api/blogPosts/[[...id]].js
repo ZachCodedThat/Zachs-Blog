@@ -17,4 +17,28 @@ handler.post(async (req, res) => {
   res.send({ post });
 });
 
+handler.put(async (req, res) => {
+  const { completed } = JSON.parse(req.body);
+
+  const result = await supabase
+    .from("blogPosts")
+    .update({ completed })
+    .match({ id: req.query.id });
+
+  const post = result.data[0];
+  console.log("Successfully edited your post!");
+  res.send({ post });
+});
+
+handler.delete(async (req, res) => {
+  const { id } = JSON.parse(req.body);
+
+  const result = await supabase.from("blogPosts").delete().match({ id });
+
+  const post = result.data[0];
+
+  console.log("Successfully deleted your post!");
+  res.send({ post });
+});
+
 export default handler;

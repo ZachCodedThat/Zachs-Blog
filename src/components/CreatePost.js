@@ -56,8 +56,8 @@ const CreatePost = () => {
     dark: "highlight",
   };
   const bgColor = {
-    light: "primary",
-    dark: "highlight",
+    light: "white",
+    dark: "#171717",
   };
   return (
     <Stack direction="column" minW="900px">
@@ -99,7 +99,7 @@ const CreatePost = () => {
           <Box
             mt={4}
             border="2px solid "
-            bg={colorMode === "light" ? "white" : "#171717"}
+            bg={bgColor[colorMode]}
             borderColor={color[colorMode]}
             wrap="wrap"
             color={colorMode === "light" ? "black" : "white"}
