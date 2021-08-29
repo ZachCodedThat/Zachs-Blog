@@ -90,14 +90,14 @@ export default function PostPage(post) {
   );
 }
 
-// export async function getServerSideProps() {
-//   const { data } = await supabase
-//     .from("blogPosts")
-//     .select("id, title, date, image, description, body, slug");
+export async function getServerSideProps() {
+  const { data } = await supabase
+    .from("blogPosts")
+    .select("id, title, date, image, description, body, slug");
 
-//   return {
-//     props: {
-//       blogPosts: data,
-//     },
-//   };
-// }
+  return {
+    props: {
+      blogPosts: data,
+    },
+  };
+}
