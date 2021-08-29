@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 const Post = ({ post }) => {
-  const { title, description, id, image, date } = post;
+  const { title, description, id, image, date, slug } = post;
 
   async function deletePost(id) {
     await fetch("/api/blogPosts", {
@@ -59,7 +59,7 @@ const Post = ({ post }) => {
         {description}
       </Text>
       <Box>
-        <NextLink href={`api/blogPosts/${id}`}>
+        <NextLink href={`api/blog/${id}`}>
           <Button
             size="md"
             variant="ghost"

@@ -5,7 +5,7 @@ import Post from "@components/Post";
 import supabase from "@utils/initSupabase";
 import Container from "@components/Container";
 
-const Home = ({ blogPosts }) => {
+export default function Home({ blogPosts }) {
   return (
     <>
       <Container>
@@ -17,7 +17,7 @@ const Home = ({ blogPosts }) => {
       </Container>
     </>
   );
-};
+}
 
 export async function getServerSideProps() {
   const { data } = await supabase
@@ -30,5 +30,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
-export default Home;
