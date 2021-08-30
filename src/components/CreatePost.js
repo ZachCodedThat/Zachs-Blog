@@ -26,25 +26,25 @@ const CreatePost = () => {
     { type: "paragraph", children: [{ text: "", marks: "" }] },
   ]);
 
-  const createPost = async (e) => {
-    e.preventDefault();
+  // const createPost = async (e) => {
+  //   e.preventDefault();
 
-    if (!title || !date || !body || !description) {
-      return;
-    }
-    console.log("firing");
-    await fetch("/api/blogPosts/", {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        date,
-        description,
-        body,
-        slug: slugify(title),
-      }),
-    });
-    console.log("firing");
-  };
+  //   if (!title || !date || !body || !description) {
+  //     return;
+  //   }
+  //   console.log("firing");
+  //   await fetch("/api/blogPosts/", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       title,
+  //       date,
+  //       description,
+  //       body,
+  //       slug: slugify(title),
+  //     }),
+  //   });
+  //   console.log("firing");
+  // };
 
   const { colorMode } = useColorMode();
   const color = {
