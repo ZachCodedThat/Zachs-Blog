@@ -6,7 +6,6 @@ import styled from "@emotion/styled";
 import DarkModeSwitch from "./DarkModeSwitch";
 
 const Container = ({ children }) => {
-  const randomNumber = Math.floor(Math.random() * 100);
   const { colorMode } = useColorMode();
 
   const bgColor = {
@@ -60,12 +59,7 @@ const Container = ({ children }) => {
 
         <DarkModeSwitch />
       </StickyNav>
-      <Image
-        src={`https://avatars.dicebear.com/api/bottts/${randomNumber}.svg`}
-        margin="3rem"
-        boxSize="3rem"
-        position="fixed"
-      />
+
       <Flex
         as="main"
         justifyContent="center"
