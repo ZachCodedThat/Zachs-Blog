@@ -28,8 +28,6 @@ const Container = ({ children }) => {
     position: sticky;
     z-index: 10;
     top: 0;
-    backdrop-filter: saturate(180%) blur(20px);
-    transition: height 0.5s, line-height 0.5s;
   `;
 
   return (
@@ -59,14 +57,15 @@ const Container = ({ children }) => {
             </Button>
           </NextLink>
         </Box>
-        <Image
-          src={`https://avatars.dicebear.com/api/bottts/${randomNumber}.svg`}
-          boxSize="3rem"
-          position="absolute"
-          left="15%"
-        />
+
         <DarkModeSwitch />
       </StickyNav>
+      <Image
+        src={`https://avatars.dicebear.com/api/bottts/${randomNumber}.svg`}
+        margin="3rem"
+        boxSize="3rem"
+        position="fixed"
+      />
       <Flex
         as="main"
         justifyContent="center"
