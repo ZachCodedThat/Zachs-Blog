@@ -84,7 +84,9 @@ const CreatePost = () => {
             </Box>
           </FormControl>
           <Box>
-            <FormLabel color={color[colorMode]}>Description</FormLabel>
+            <FormLabel color={color[colorMode]} pt={[2, 4]}>
+              Description
+            </FormLabel>
             <Input
               color={color[colorMode]}
               type="text"
@@ -94,7 +96,9 @@ const CreatePost = () => {
           </Box>
           <FormControl id="Date" isRequired>
             <Box>
-              <FormLabel color={color[colorMode]}>Date</FormLabel>
+              <FormLabel color={color[colorMode]} pt={[2, 4]}>
+                Date
+              </FormLabel>
               <Input
                 color={color[colorMode]}
                 type="date"
