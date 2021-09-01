@@ -1,11 +1,12 @@
 import React from "react";
-import { useColorMode, Button, Flex, Box } from "@chakra-ui/react";
+import { useColorMode, Button, Flex, Box, Image } from "@chakra-ui/react";
 import NextLink from "next/link";
 import styled from "@emotion/styled";
 
 import DarkModeSwitch from "./DarkModeSwitch";
 
 const Container = ({ children }) => {
+  const randomNumber = Math.floor(Math.random() * 100);
   const { colorMode } = useColorMode();
 
   const bgColor = {
@@ -58,6 +59,12 @@ const Container = ({ children }) => {
             </Button>
           </NextLink>
         </Box>
+        <Image
+          src={`https://avatars.dicebear.com/api/bottts/${randomNumber}.svg`}
+          boxSize="3rem"
+          position="absolute"
+          left="15%"
+        />
         <DarkModeSwitch />
       </StickyNav>
       <Flex

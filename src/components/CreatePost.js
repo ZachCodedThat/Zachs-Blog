@@ -63,7 +63,7 @@ const CreatePost = () => {
     <Stack direction="column" minW="900px">
       <Heading color={color[colorMode]}>Add Blog</Heading>
 
-      <form onSubmit={createPost}>
+      <form>
         <FormControl id="title" isRequired>
           <Box>
             <FormLabel color={color[colorMode]}>Title</FormLabel>
