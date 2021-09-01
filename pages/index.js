@@ -15,7 +15,6 @@ const Home = ({ posts }) => {
           src={`https://avatars.dicebear.com/api/bottts/${randomNumber}.svg`}
           margin-top="1rem"
           boxSize="3rem"
-          position="top"
         />
         <div>
           {posts.map((post, index) => (
