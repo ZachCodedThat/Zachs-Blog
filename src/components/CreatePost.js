@@ -26,25 +26,25 @@ const CreatePost = () => {
     { type: "paragraph", children: [{ text: "", marks: "" }] },
   ]);
 
-  // const createPost = async (e) => {
-  //   e.preventDefault();
+  const createPost = async (e) => {
+    e.preventDefault();
 
-  //   if (!title || !date || !body || !description) {
-  //     return;
-  //   }
-  //   console.log("firing");
-  //   await fetch("/api/blogPosts/", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       title,
-  //       date,
-  //       description,
-  //       body,
-  //       slug: slugify(title),
-  //     }),
-  //   });
-  //   console.log("firing");
-  // };
+    if (!title || !date || !body || !description) {
+      return;
+    }
+    console.log("firing");
+    await fetch("/api/blogPosts/", {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        date,
+        description,
+        body,
+        slug: slugify(title),
+      }),
+    });
+    console.log("firing");
+  };
 
   const { colorMode } = useColorMode();
   const color = {
@@ -71,7 +71,7 @@ const CreatePost = () => {
           Add Blog
         </Heading>
 
-        <form>
+        <form onSubmit={createPost}>
           <FormControl id="title" isRequired>
             <Box>
               <FormLabel color={color[colorMode]}>Title</FormLabel>
@@ -116,6 +116,7 @@ const CreatePost = () => {
               wrap="wrap"
               color={colorMode === "light" ? "black" : "white"}
               p={4}
+              maxWidth={[400, 650, 750, 850, 1000]}
             >
               <SlateEditor value={body} setValue={setBody} />
             </Box>
@@ -126,6 +127,7 @@ const CreatePost = () => {
             cursor="pointer"
             _hover={{ bg: navHoverBg[colorMode], color: "black" }}
             type="submit"
+            mt={6}
           >
             Save
           </Button>

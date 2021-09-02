@@ -6,7 +6,7 @@ import CreatePost from "@components/CreatePost";
 const BlogPost = () => {
   return (
     <Container>
-      <Flex w="100%" h="100%">
+      <Flex>
         <CreatePost />
       </Flex>
     </Container>
