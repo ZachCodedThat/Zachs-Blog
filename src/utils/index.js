@@ -1,3 +1,3 @@
-export const sortByDate = (a, b) => {
-  return new Date(b.frontmatter.date) - new Date(a.frontmatter.date);
+export const sortByID = (a, b) => {
+  return new Date(b.id) - new Date(a.id);
 };
