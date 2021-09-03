@@ -11,6 +11,15 @@ import {
 } from "@chakra-ui/react";
 
 const Post = ({ posts }) => {
+  const { title, date, description, id, slug, image } = posts;
+
+  async function deletePost(id) {
+    await fetch("/api/blogPosts", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    });
+  }
+
   const { colorMode } = useColorMode();
   const color = {
     light: "primary",
@@ -33,9 +42,9 @@ const Post = ({ posts }) => {
       px={2}
     >
       <Heading padding="10px" marginBottom="-5" color={color[colorMode]}>
-        {posts.title}
+        {title}
       </Heading>
-      <Image src={posts.image} alt="" borderRadius="10px" />
+      <Image src={image} alt="" borderRadius="10px" />
 
       <Text
         bg={color[colorMode]}
@@ -44,14 +53,14 @@ const Post = ({ posts }) => {
         padding="5px"
         width="100%"
       >
-        Posted on {posts.date}
+        Posted on {date}
       </Text>
 
       <Text padding="10px" fontSize="lg">
-        {posts.description}
+        {description}
       </Text>
       <Box>
-        <NextLink href={`/blog/${posts.slug}`}>
+        <NextLink href={`/blog/${slug}`}>
           <Button
             size="md"
             variant="ghost"
@@ -64,6 +73,18 @@ const Post = ({ posts }) => {
             Read More
           </Button>
         </NextLink>
+        <Button
+          onClick={() => deletePost(id)}
+          size="md"
+          variant="ghost"
+          cursor="pointer"
+          bg="none"
+          marginBottom="5px"
+          _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+          as="a"
+        >
+          Delete post
+        </Button>
       </Box>
     </Stack>
   );

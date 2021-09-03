@@ -34,7 +34,7 @@ export async function getStaticProps() {
     props: {
       posts: data.sort(sortByID),
     },
-    revalidate: 30,
+    revalidate: 5,
   };
 }
 
