@@ -16,10 +16,11 @@ const Home = ({ posts }) => {
           src={`https://avatars.dicebear.com/api/bottts/${randomNumber}.svg`}
           margin-top="1rem"
           boxSize="3rem"
+          alt=""
         />
         <div>
-          {posts.map((posts, slug) => (
-            <Post posts={posts} key={slug} />
+          {posts.map((posts, index) => (
+            <Post posts={posts} key={index} />
           ))}
         </div>
       </Container>

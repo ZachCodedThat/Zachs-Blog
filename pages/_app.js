@@ -39,18 +39,39 @@ const GlobalStyle = ({ children }) => {
             line-height: 2;
             font-weight: bold;
             margin: 10px 0;
-            color: ${colorMode === "light" ? primary : highlight}
-            
+            color: ${colorMode === "light" ? primary : highlight};
           }
+
+          ul {
+            display: block;
+
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+          }
+          li {
+            list-style-type: disc;
+          }
+
           p {
             font-size: 20px;
             margin: 10px 0;
           }
-          hr {
-            line-height: 2;
-            color: ${colorMode === "light" ? primary : highlight}
+
+          blockquote {
+            border-left: 2px solid #ddd;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 10px;
+            color: #aaa;
+            font-style: italic;
           }
 
+          hr {
+            line-height: 2;
+            color: ${colorMode === "light" ? primary : highlight};
           }
         `}
       />

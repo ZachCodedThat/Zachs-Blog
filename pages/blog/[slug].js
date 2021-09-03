@@ -1,6 +1,8 @@
 import supabase from "@utils/initSupabase";
 import NextLink from "next/link";
 import Container from "@components/Container";
+import serialize from "@utils/serializeSlateToJsx";
+
 import {
   useColorMode,
   Heading,
@@ -13,8 +15,9 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-const PostPage = ({ posts }) => {
-  const { title, image, date, body } = posts;
+export default function PostPage({ posts }) {
+  const { title, image, date, body, id } = posts;
+
   const { colorMode } = useColorMode();
   const color = {
     light: "primary",
@@ -24,7 +27,8 @@ const PostPage = ({ posts }) => {
     light: "primary",
     dark: "highlight",
   };
-
+  // console.log(posts);
+  // console.log(serialize(body[0]));
   return (
     <Container>
       <Stack
@@ -79,12 +83,13 @@ const PostPage = ({ posts }) => {
           align="flex-start"
           justifyContent="space-between"
           flexDirection={["column", "row"]}
-          dangerouslySetInnerHTML={body}
-        ></Flex>
+        >
+          {serialize(body[2])}
+        </Flex>
       </Stack>
     </Container>
   );
-};
+}
 
 export async function getStaticPaths() {
   const { data } = await supabase.from("blogPosts").select();
@@ -107,13 +112,16 @@ export async function getStaticProps({ params: { slug } }) {
     .from("blogPosts")
     .select()
     .match({ slug: postSlug });
-  const posts = data[0];
+  const post = data[0];
+
+  if (!post) {
+    console.warn(`No content found for slug ${postSlug}`);
+  }
+
   return {
     props: {
-      posts: data,
+      posts: post,
     },
-    revalidate: 30,
+    revalidate: 10,
   };
 }
-
-export default PostPage;
