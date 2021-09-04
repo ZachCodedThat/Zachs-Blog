@@ -15,8 +15,8 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-export default function PostPage({ posts }) {
-  const { title, image, date, body, id } = posts;
+export default function PostPage({ post }) {
+  const { title, image, date, body, id } = post;
 
   const { colorMode } = useColorMode();
   const color = {
@@ -27,7 +27,7 @@ export default function PostPage({ posts }) {
     light: "primary",
     dark: "highlight",
   };
-  // console.log(posts);
+  console.log(serialize(body[0]));
   // console.log(serialize(body[0]));
   return (
     <Container>
@@ -84,7 +84,7 @@ export default function PostPage({ posts }) {
           justifyContent="space-between"
           flexDirection={["column", "row"]}
         >
-          {serialize(body[2])}
+          {body.map((node) => serialize(node))}
         </Flex>
       </Stack>
     </Container>
@@ -120,7 +120,7 @@ export async function getStaticProps({ params: { slug } }) {
 
   return {
     props: {
-      posts: post,
+      post,
     },
     revalidate: 10,
   };

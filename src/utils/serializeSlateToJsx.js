@@ -24,7 +24,7 @@ const serialize = (node) => {
 
   const children = node.children.map((n) => serialize(n));
 
-  console.log(node.type);
+  // console.log(node.type);
 
   switch (node.type) {
     case "bulleted-list":
