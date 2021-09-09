@@ -27,8 +27,7 @@ export default function PostPage({ post }) {
     light: "primary",
     dark: "highlight",
   };
-  console.log(serialize(body[0]));
-  // console.log(serialize(body[0]));
+
   return (
     <Container>
       <Stack
