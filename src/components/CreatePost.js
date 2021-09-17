@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 
 const CreatePost = () => {
-  const toast = useToast(); // use the try/catch within the fetch and you need 2 one for passing and one for failing. 
+  const toast = useToast(); // use the try/catch within the fetch and you need 2 one for passing and one for failing.
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -148,3 +148,5 @@ const CreatePost = () => {
   );
 };
 export default CreatePost;
+
+// this is a test for WSL git functions
