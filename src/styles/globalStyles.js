@@ -5,7 +5,12 @@ import { Global, css } from "@emotion/react";
 const GlobalStyle = ({ children }) => {
   const { colorMode } = useColorMode();
 
+  // useToken allows you to reach into your theme.js file which is wrapping the entire _app.js and pin the vlaues of a param
+  //  in this case "colors" and allows for thier use within this component
+
   const [primary, highlight] = useToken("colors", ["primary", "highlight"]);
+
+  // provides styling to various base JSX elements. The Global tag is passed to _app.js where it is used to extend these styles across the entire application.
 
   return (
     <>

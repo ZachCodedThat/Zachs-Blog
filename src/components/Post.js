@@ -46,13 +46,7 @@ const Post = ({ posts }) => {
       </Heading>
       <Image src={image} alt="" borderRadius="10px" />
 
-      <Text
-        bg={color[colorMode]}
-        color="black"
-        as="date"
-        padding="5px"
-        width="100%"
-      >
+      <Text bg={color[colorMode]} color="black" padding="5px" width="100%">
         Posted on {date}
       </Text>
 

@@ -1,17 +1,9 @@
-import { Text as ChakraText } from "@chakra-ui/react";
+// import { Text as ChakraText } from "@chakra-ui/react";
 // import escapeHtml from "escape-html";
 import { Text } from "slate";
 
-// function removeSpecialCharacters(str) {
-//   var lower = str.toLowerCase();
-//   var upper = str.toUpperCase();
-
-//   var res = "";
-//   for (var i = 0; i < lower.length; ++i) {
-//     if (lower[i] != upper[i] || lower[i].trim() === "") res += str[i];
-//   }
-//   return res;
-// }
+// This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
+//  type value passed by the node to the switch.
 
 const serialize = (node) => {
   if (Text.isText(node)) {
@@ -24,7 +16,7 @@ const serialize = (node) => {
 
   const children = node.children.map((n) => serialize(n));
 
-  // console.log(node.type);
+  console.log(node);
 
   switch (node.type) {
     case "bulleted-list":

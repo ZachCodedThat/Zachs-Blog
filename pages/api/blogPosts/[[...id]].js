@@ -29,3 +29,8 @@ handler.delete(async (req, res) => {
 });
 
 export default handler;
+
+// It creates a handler that works for posting to the DB and deleting from it.
+
+// this API file has a special [[...id ]].js name which tells Next what id# is being handled from the DB.
+//    which is then passed to the Delete function in the handler
