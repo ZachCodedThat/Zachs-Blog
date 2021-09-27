@@ -241,7 +241,7 @@ const Element = ({ attributes, children, element }) => {
         <ChakraHeading
           as="h3"
           color={color[colorMode]}
-          size="1xl"
+          size="xl"
           lineHeight="2"
           fontWeight="bold"
           {...attributes}
