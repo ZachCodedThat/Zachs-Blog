@@ -1,7 +1,7 @@
 import supabase from "@utils/initSupabase";
 import NextLink from "next/link";
 import Container from "@components/Container";
-import serialize from "@utils/serializeSlateToJsx";
+import Serialize from "@utils/serializeSlateToJsx";
 
 import {
   useColorMode,
@@ -87,7 +87,7 @@ export default function PostPage({ post }) {
           justifyContent="space-between"
           flexDirection={["column", "row"]}
         >
-          {body.map((node) => serialize(node))}
+          {body.map((node) => Serialize(node))}
         </Flex>
       </Stack>
     </Container>
