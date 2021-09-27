@@ -1,11 +1,23 @@
 // import { Text as ChakraText } from "@chakra-ui/react";
 // import escapeHtml from "escape-html";
 import { Text } from "slate";
+import {
+  Heading as ChakraHeading,
+  List as ChakraList,
+  useColorMode,
+  chakra,
+} from "@chakra-ui/react";
 
 // This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
 //  type value passed by the node to the switch.
 
-const serialize = (node) => {
+const Serialize = (node) => {
+  const { colorMode } = useColorMode();
+  const color = {
+    light: "primary",
+    dark: "highlight",
+  };
+
   if (Text.isText(node)) {
     let string = node.text;
     if (node.bold) {
@@ -14,26 +26,86 @@ const serialize = (node) => {
     return string;
   }
 
-  const children = node.children.map((n) => serialize(n));
+  const children = node.children.map((n) => Serialize(n));
 
-  console.log(node);
+  console.log();
 
   switch (node.type) {
     case "bulleted-list":
-      return <li>{[children]}</li>;
+      return (
+        <ChakraList
+          display="block"
+          marginBlockStart="1em"
+          marginBlockEnd="1em"
+          marginInlineStart="0px"
+          paddingInlineStart="40px"
+          listStyleType="disc"
+        >
+          {children}
+        </ChakraList>
+      );
 
     case "block-quote":
-      return <blockquote> {children} </blockquote>;
+      return (
+        <chakra.blockquote
+          borderLeft="2px"
+          marginLeft="0"
+          marginRight="0"
+          paddingLeft="10px"
+          color="#aaa"
+        >
+          {children}
+        </chakra.blockquote>
+      );
+
+    case "heading-one":
+      return (
+        <ChakraHeading
+          as="h1"
+          color={color[colorMode]}
+          size="4xl"
+          lineHeight="2"
+          fontWeight="bold"
+        >
+          {children}
+        </ChakraHeading>
+      );
+    case "heading-two":
+      return (
+        <ChakraHeading
+          as="h2"
+          color={color[colorMode]}
+          size="2xl"
+          lineHeight="2"
+          fontWeight="bold"
+        >
+          {children}
+        </ChakraHeading>
+      );
+    case "heading-three":
+      return (
+        <ChakraHeading
+          as="h3"
+          color={color[colorMode]}
+          size="xl"
+          lineHeight="2"
+          fontWeight="bold"
+        >
+          {children}
+        </ChakraHeading>
+      );
+    case "paragraph":
+      return (
+        <chakra.p fontSize="20px" margin="10px 0">
+          {children}
+        </chakra.p>
+      );
     case "link":
       return `<a href="${escapeHtml(node.url)}">${children}</a>`;
-    case "heading-one":
-      return <h1>{children}</h1>;
-    case "paragraph":
-      return <p>{children}</p>;
 
     default:
       return children;
   }
 };
 
-export default serialize;
+export default Serialize;

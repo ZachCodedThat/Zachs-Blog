@@ -1,6 +1,12 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { Slate, Editable, withReact } from "slate-react";
 import {
+  Heading as ChakraHeading,
+  useColorMode,
+  List as ChakraList,
+  chakra,
+} from "@chakra-ui/react";
+import {
   Editor,
   Transforms,
   Range,
@@ -25,13 +31,42 @@ const SHORTCUTS = {
 };
 
 export default function SlateEditor({ value, setValue }) {
+  const chromeErrorCatch = () => {
+    if (!window.chrome) return;
+    if (editor.selection == null) return;
+    try {
+      /**
+       * Need a try/catch because sometimes you get an error like:
+       *
+       * Error: Cannot resolve a DOM node from Slate node: {"type":"p","children":[{"text":"","by":-1,"at":-1}]}
+       */
+      const domPoint = ReactEditor.toDOMPoint(editor, editor.selection.focus);
+      const node = domPoint[0];
+      if (node == null) return;
+      const element = node.parentElement;
+      if (element == null) return;
+      element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } catch (e) {
+      /**
+       * Empty catch. Do nothing if there is an error.
+       */
+    }
+  };
+
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const editor = useMemo(
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
   );
   return (
-    <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
+    <Slate
+      editor={editor}
+      value={value}
+      onChange={(value) => setValue(value)}
+      onSelect={() => {
+        chromeErrorCatch;
+      }}
+    >
       <Editable
         renderElement={renderElement}
         placeholder="Write some markdown..."
@@ -134,17 +169,79 @@ const withShortcuts = (editor) => {
 };
 
 const Element = ({ attributes, children, element }) => {
+  const { colorMode } = useColorMode();
+  const color = {
+    light: "primary",
+    dark: "highlight",
+  };
+
   switch (element.type) {
     case "block-quote":
-      return <blockquote {...attributes}>{children}</blockquote>;
+      return (
+        <chakra.blockquote
+          borderLeft="2px"
+          marginLeft="0"
+          marginRight="0"
+          paddingLeft="10px"
+          color="#aaa"
+          {...attributes}
+        >
+          {children}
+        </chakra.blockquote>
+      );
     case "bulleted-list":
-      return <ul {...attributes}>{children}</ul>;
+      return (
+        <ChakraList
+          display="block"
+          marginBlockStart="1em"
+          marginBlockEnd="1em"
+          marginInlineStart="0px"
+          paddingInlineStart="40px"
+          listStyleType="disc"
+          {...attributes}
+        >
+          {children}
+        </ChakraList>
+      );
     case "heading-one":
-      return <h1 {...attributes}>{children}</h1>;
+      return (
+        <ChakraHeading
+          as="h1"
+          color={color[colorMode]}
+          size="4xl"
+          lineHeight="2"
+          fontWeight="bold"
+          {...attributes}
+        >
+          {children}
+        </ChakraHeading>
+      );
     case "heading-two":
-      return <h2 {...attributes}>{children}</h2>;
+      return (
+        <ChakraHeading
+          as="h2"
+          color={color[colorMode]}
+          size="3xl"
+          lineHeight="2"
+          fontWeight="bold"
+          {...attributes}
+        >
+          {children}
+        </ChakraHeading>
+      );
     case "heading-three":
-      return <h3 {...attributes}>{children}</h3>;
+      return (
+        <ChakraHeading
+          as="h3"
+          color={color[colorMode]}
+          size="1xl"
+          lineHeight="2"
+          fontWeight="bold"
+          {...attributes}
+        >
+          {children}
+        </ChakraHeading>
+      );
     case "heading-four":
       return <h4 {...attributes}>{children}</h4>;
     case "heading-five":
