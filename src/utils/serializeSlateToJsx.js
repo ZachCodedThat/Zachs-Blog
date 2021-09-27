@@ -4,6 +4,7 @@ import { Text } from "slate";
 import {
   Heading as ChakraHeading,
   List as ChakraList,
+  ListItem as ChakraListitem,
   useColorMode,
   chakra,
 } from "@chakra-ui/react";
@@ -28,7 +29,7 @@ const Serialize = (node) => {
 
   const children = node.children.map((n) => Serialize(n));
 
-  console.log();
+  console.log(children);
 
   switch (node.type) {
     case "bulleted-list":
@@ -39,10 +40,15 @@ const Serialize = (node) => {
           marginBlockEnd="1em"
           marginInlineStart="0px"
           paddingInlineStart="40px"
-          listStyleType="disc"
         >
           {children}
         </ChakraList>
+      );
+    case "list-item":
+      return (
+        <ChakraListitem listStyleType="disc" fontSize="20px">
+          {children}
+        </ChakraListitem>
       );
 
     case "block-quote":

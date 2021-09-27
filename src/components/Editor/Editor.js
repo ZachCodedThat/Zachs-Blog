@@ -4,6 +4,7 @@ import {
   Heading as ChakraHeading,
   useColorMode,
   List as ChakraList,
+  ListItem as ChakraListitem,
   chakra,
 } from "@chakra-ui/react";
 import {
@@ -203,6 +204,12 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </ChakraList>
       );
+    case "list-item":
+      return (
+        <ChakraListitem listStyleType="disc" fontSize="30px" {...attributes}>
+          {children}
+        </ChakraListitem>
+      );
     case "heading-one":
       return (
         <ChakraHeading
@@ -248,8 +255,7 @@ const Element = ({ attributes, children, element }) => {
       return <h5 {...attributes}>{children}</h5>;
     case "heading-six":
       return <h6 {...attributes}>{children}</h6>;
-    case "list-item":
-      return <li {...attributes}>{children}</li>;
+
     default:
       return <p {...attributes}>{children}</p>;
   }
