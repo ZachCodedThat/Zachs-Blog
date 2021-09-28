@@ -1,9 +1,8 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import marked from "marked";
+import supabase from "@utils/initSupabase";
 import NextLink from "next/link";
 import Container from "@components/Container";
+import Serialize from "@utils/serializeSlateToJsx";
+
 import {
   useColorMode,
   Heading,
@@ -16,8 +15,13 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-const PostPage = ({ frontmatter: { title, date, cover_image }, content }) => {
-  // frontmatter and content are props from getStaticProps.
+// post is passed from GSprops and is destructured to make it easier to work with within the JSX.
+
+// body is the only complicated use case. Since it returns as an array of objects we need to map it through the Searilize function.
+
+export default function PostPage({ post }) {
+  const { title, image, date, body, id } = post;
+
   const { colorMode } = useColorMode();
   const color = {
     light: "primary",
@@ -69,7 +73,7 @@ const PostPage = ({ frontmatter: { title, date, cover_image }, content }) => {
         </Text>
 
         <Image
-          src={cover_image}
+          src={image}
           alt=""
           padding="10px"
           width="80%"
@@ -82,55 +86,54 @@ const PostPage = ({ frontmatter: { title, date, cover_image }, content }) => {
           align="flex-start"
           justifyContent="space-between"
           flexDirection={["column", "row"]}
-          dangerouslySetInnerHTML={{ __html: marked(content) }}
-        ></Flex>
+        >
+          {body.map((node) => Serialize(node))}
+        </Flex>
       </Stack>
     </Container>
   );
-};
+}
+
+// GSPaths is used to create dynamic routes for each of the blog posts within the database. This is completed by mapping across all of the slugs in the DB
+//  and creating a path for each one.
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join("posts"));
-
-  // creates a variable that creates an array of all of the files within the posts directory
-
-  const paths = files.map((filename) => ({
-    params: { slug: filename.replace(".md", "") },
+  const { data } = await supabase.from("blogPosts").select();
+  const posts = data;
+  const paths = posts.map(({ slug }) => ({
+    params: {
+      slug,
+    },
   }));
-
-  // takes the variable "files" and maps it against a function that for every file in the posts folder that removes the .md tag from the filename
-  // this creates an [{}] which is sent to getStaticProps when a new slug is called for.
 
   return {
     paths,
-    // this returns params: { slug: filename.replace(".md", "") }
     fallback: false,
-    // this throws a 404 if an unknown path/slug is called
   };
 }
 
+//GSProps is used to pull all of the data from the post specified from the DB using the Slug param from GSpaths as a reference.
+
+//The data is a an object containing the key:value data from the post matched the slug.
+
+//Though this is a static function running revalidate as the second argument allows us to update the data on the page after it has been udated on the DB.
+
 export async function getStaticProps({ params: { slug } }) {
-  const markdownWithMeta = fs.readFileSync(
-    path.join("posts", slug + ".md"),
-    "utf-8"
-  );
-
-  // getStaticProps takes in chosen slug within the "posts" directory passed from getStaticPaths
-  // creates a variable that is content of the markdown file within the posts directory created by the slug + .md
-  // utf-8 refers to the HTML character set
-
-  const { data: frontmatter, content } = matter(markdownWithMeta);
-
-  // matter takes the markdown file and parses it to seperate the front-matter and the content needing to be rendered.
-  // the parsed file returns a props {} containing data from the parsed elemtents that can now be used with the JSX above to render content to the page.
+  const postSlug = slug;
+  const { data } = await supabase
+    .from("blogPosts")
+    .select()
+    .match({ slug: postSlug });
+  const post = data[0];
+  // console.log(data[0]);
+  if (!post) {
+    console.warn(`No content found for slug ${postSlug}`);
+  }
 
   return {
     props: {
-      frontmatter,
-      content,
-      slug,
+      post,
     },
+    revalidate: 10,
   };
 }
-
-export default PostPage;

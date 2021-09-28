@@ -37,9 +37,10 @@ const Container = ({ children }) => {
             <Button
               size="lg"
               as="a"
+              color={color[colorMode]}
               variant="ghost"
               cursor="pointer"
-              _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+              _hover={{ bg: navHoverBg[colorMode], color: bgColor[colorMode] }}
             >
               Zachs Blog
             </Button>
@@ -47,10 +48,11 @@ const Container = ({ children }) => {
           <NextLink href="/postblog" passHref>
             <Button
               size="lg"
+              color={color[colorMode]}
               as="a"
               variant="ghost"
               cursor="pointer"
-              _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+              _hover={{ bg: navHoverBg[colorMode], color: bgColor[colorMode] }}
             >
               Post
             </Button>

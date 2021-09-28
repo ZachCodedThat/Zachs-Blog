@@ -10,3 +10,5 @@ const slugify = (text) =>
     .replace(/--+/g, "-");
 
 export default slugify;
+
+// nifty function that creates slugs easily from a passed text value.
