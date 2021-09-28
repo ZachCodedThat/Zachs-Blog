@@ -32,42 +32,13 @@ const SHORTCUTS = {
 };
 
 export default function SlateEditor({ value, setValue }) {
-  const chromeErrorCatch = () => {
-    if (!window.chrome) return;
-    if (editor.selection == null) return;
-    try {
-      /**
-       * Need a try/catch because sometimes you get an error like:
-       *
-       * Error: Cannot resolve a DOM node from Slate node: {"type":"p","children":[{"text":"","by":-1,"at":-1}]}
-       */
-      const domPoint = ReactEditor.toDOMPoint(editor, editor.selection.focus);
-      const node = domPoint[0];
-      if (node == null) return;
-      const element = node.parentElement;
-      if (element == null) return;
-      element.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    } catch (e) {
-      /**
-       * Empty catch. Do nothing if there is an error.
-       */
-    }
-  };
-
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const editor = useMemo(
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
   );
   return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={(value) => setValue(value)}
-      onSelect={() => {
-        chromeErrorCatch;
-      }}
-    >
+    <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
       <Editable
         renderElement={renderElement}
         placeholder="Write some markdown..."
