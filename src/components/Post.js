@@ -29,6 +29,10 @@ const Post = ({ posts }) => {
     light: "primary",
     dark: "highlight",
   };
+  const buttonTextHover = {
+    light: "white",
+    dark: "black",
+  };
 
   return (
     <Stack
@@ -56,25 +60,25 @@ const Post = ({ posts }) => {
       <Box>
         <NextLink href={`/blog/${slug}`}>
           <Button
-            size="md"
             variant="ghost"
-            cursor="pointer"
-            bg="none"
             marginBottom="5px"
-            _hover={{ bg: navHoverBg[colorMode], color: "black" }}
             as="a"
+            _hover={{
+              bg: navHoverBg[colorMode],
+              color: buttonTextHover[colorMode],
+            }}
           >
             Read More
           </Button>
         </NextLink>
         <Button
           onClick={() => deletePost(id)}
-          size="md"
           variant="ghost"
-          cursor="pointer"
-          bg="none"
           marginBottom="5px"
-          _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+          _hover={{
+            bg: navHoverBg[colorMode],
+            color: buttonTextHover[colorMode],
+          }}
           as="a"
         >
           Delete post

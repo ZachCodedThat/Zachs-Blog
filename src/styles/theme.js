@@ -47,6 +47,57 @@ const overrides = {
   breakpoints,
 };
 
-const customTheme = extendTheme(overrides);
+const Button = {
+  // Styles for the base style
+  baseStyle: {
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    borderRadius: "base",
+    cursor: "pointer",
+    // <-- border radius is same for all variants and sizes
+  },
+
+  sizes: {
+    sm: {
+      fontSize: "sm",
+      px: 4, // <-- px is short for paddingLeft and paddingRight
+      py: 3, // <-- py is short for paddingTop and paddingBottom
+    },
+    md: {
+      fontSize: "md",
+      px: 6,
+      py: 4,
+      margin: 0.5,
+    },
+  },
+  // Two variants: outline and solid
+  variants: {
+    outline: {
+      border: "2px solid",
+      borderColor: "purple.500",
+      color: "purple.500",
+    },
+    solid: {
+      bg: "purple.500",
+      color: "white",
+    },
+    nav: {
+      px: 6,
+      py: 4,
+      margin: 1,
+    },
+  },
+  // The default size and variant values
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+  },
+};
+
+const customTheme = extendTheme(overrides, {
+  components: {
+    Button,
+  },
+});
 
 export default customTheme;

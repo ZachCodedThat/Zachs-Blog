@@ -35,11 +35,9 @@ const Container = ({ children }) => {
         <Box>
           <NextLink href="/" passHref>
             <Button
-              size="lg"
               as="a"
               color={color[colorMode]}
-              variant="ghost"
-              cursor="pointer"
+              variant="nav"
               _hover={{ bg: navHoverBg[colorMode], color: bgColor[colorMode] }}
             >
               Zachs Blog
@@ -47,11 +45,9 @@ const Container = ({ children }) => {
           </NextLink>
           <NextLink href="/postblog" passHref>
             <Button
-              size="lg"
               color={color[colorMode]}
               as="a"
-              variant="ghost"
-              cursor="pointer"
+              variant="nav"
               _hover={{ bg: navHoverBg[colorMode], color: bgColor[colorMode] }}
             >
               Post
