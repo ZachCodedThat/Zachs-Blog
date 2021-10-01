@@ -12,6 +12,8 @@ import {
 // This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
 //  type value passed by the node to the switch.
 
+// It also takes marks from the text and applies them accordingly
+
 const Serialize = (node) => {
   const { colorMode } = useColorMode();
   const color = {
@@ -22,7 +24,19 @@ const Serialize = (node) => {
   if (Text.isText(node)) {
     let string = node.text;
     if (node.bold) {
-      string = `<strong>${string}</strong>`;
+      string = <strong>{string}</strong>;
+    }
+
+    if (node.code) {
+      string = <code>{string}</code>;
+    }
+
+    if (node.italic) {
+      string = <em>{string}</em>;
+    }
+
+    if (node.underline) {
+      string = <u>{string}</u>;
     }
     return string;
   }

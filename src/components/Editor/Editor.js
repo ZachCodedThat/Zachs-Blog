@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useMemo } from "react";
-import { Slate, Editable, withReact } from "slate-react";
+import React, { useCallback, useMemo } from "react";
+import { Slate, Editable, withReact, useSlate } from "slate-react";
 import {
   Heading as ChakraHeading,
   useColorMode,
@@ -9,6 +9,8 @@ import {
 } from "@chakra-ui/react";
 import {
   Editor,
+  isBoldActive,
+  isItalicActive,
   Transforms,
   Range,
   Point,
@@ -17,6 +19,22 @@ import {
   Descendant,
 } from "slate";
 import { withHistory } from "slate-history";
+
+import { Toolbar, Icon } from "./EditorComponents/components";
+
+import {
+  FaBold,
+  FaItalic,
+  FaUnderline,
+  FaStrikethrough,
+  FaCode,
+  FaListOl,
+  FaListUl,
+  FaQuoteLeft,
+  FaHeading,
+} from "react-icons/fa";
+
+const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 const SHORTCUTS = {
   "*": "list-item",
@@ -33,14 +51,27 @@ const SHORTCUTS = {
 
 export default function SlateEditor({ value, setValue }) {
   const renderElement = useCallback((props) => <Element {...props} />, []);
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
   );
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
+      <Toolbar>
+        <MarkButton format="bold" icon={<FaBold />} />
+        <MarkButton format="italic" icon={<FaItalic />} />
+        <MarkButton format="underline" icon={<FaUnderline />} />
+        <MarkButton format="code" icon={<FaCode />} />
+        <BlockButton format="heading-one" icon={<FaHeading />} />
+        <BlockButton format="block-quote" icon={<FaQuoteLeft />} />
+        <BlockButton format="numbered-list" icon={<FaListOl />} />
+        <BlockButton format="bulleted-list" icon={<FaListUl />} />
+      </Toolbar>
+
       <Editable
         renderElement={renderElement}
+        renderLeaf={renderLeaf}
         placeholder="Write some markdown..."
         spellCheck
         autoFocus
@@ -140,6 +171,52 @@ const withShortcuts = (editor) => {
   return editor;
 };
 
+const toggleBlock = (editor, format) => {
+  const isActive = isBlockActive(editor, format);
+  const isList = LIST_TYPES.includes(format);
+
+  Transforms.unwrapNodes(editor, {
+    match: (n) =>
+      LIST_TYPES.includes(
+        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type
+      ),
+    split: true,
+  });
+  const newProperties = {
+    type: isActive ? "paragraph" : isList ? "list-item" : format,
+  };
+  Transforms.setNodes(editor, newProperties);
+
+  if (!isActive && isList) {
+    const block = { type: format, children: [] };
+    Transforms.wrapNodes(editor, block);
+  }
+};
+
+const toggleMark = (editor, format) => {
+  const isActive = isMarkActive(editor, format);
+
+  if (isActive) {
+    Editor.removeMark(editor, format);
+  } else {
+    Editor.addMark(editor, format, true);
+  }
+};
+
+const isBlockActive = (editor, format) => {
+  const [match] = Editor.nodes(editor, {
+    match: (n) =>
+      !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === format,
+  });
+
+  return !!match;
+};
+
+const isMarkActive = (editor, format) => {
+  const marks = Editor.marks(editor);
+  return marks ? marks[format] === true : false;
+};
+
 const Element = ({ attributes, children, element }) => {
   const { colorMode } = useColorMode();
   const color = {
@@ -220,14 +297,58 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </ChakraHeading>
       );
-    case "heading-four":
-      return <h4 {...attributes}>{children}</h4>;
-    case "heading-five":
-      return <h5 {...attributes}>{children}</h5>;
-    case "heading-six":
-      return <h6 {...attributes}>{children}</h6>;
 
     default:
       return <p {...attributes}>{children}</p>;
   }
+};
+
+const Leaf = ({ attributes, children, leaf }) => {
+  if (leaf.bold) {
+    children = <strong>{children}</strong>;
+  }
+
+  if (leaf.code) {
+    children = <code>{children}</code>;
+  }
+
+  if (leaf.italic) {
+    children = <em>{children}</em>;
+  }
+
+  if (leaf.underline) {
+    children = <u>{children}</u>;
+  }
+
+  return <span {...attributes}>{children}</span>;
+};
+
+const BlockButton = ({ format, icon }) => {
+  const editor = useSlate();
+  return (
+    <Icon
+      active={isBlockActive(editor, format)}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleBlock(editor, format);
+      }}
+    >
+      <Icon>{icon}</Icon>
+    </Icon>
+  );
+};
+
+const MarkButton = ({ format, icon }) => {
+  const editor = useSlate();
+  return (
+    <Icon
+      active={isMarkActive(editor, format)}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleMark(editor, format);
+      }}
+    >
+      <Icon>{icon}</Icon>
+    </Icon>
+  );
 };

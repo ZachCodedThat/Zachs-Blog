@@ -3,6 +3,8 @@ import slugify from "@utils/slugify";
 
 import SlateEditor from "./Editor";
 
+// import SlateEditor from "./Editor";
+
 import {
   useColorMode,
   useToast,
@@ -20,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 const CreatePost = () => {
-  const toast = useToast(); // use the try/catch within the fetch and you need 2 one for passing and one for failing.
+  // const toast = useToast(); // use the try/catch within the fetch and you need 2 one for passing and one for failing.
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -130,15 +132,6 @@ const CreatePost = () => {
             _hover={{ bg: navHoverBg[colorMode], color: "black" }}
             type="submit"
             mt={6}
-            onClick={() =>
-              toast({
-                title: "Post Created!",
-                description: "Your post has been added to the DB!",
-                status: "success",
-                duration: 9000,
-                isClosable: true,
-              })
-            }
           >
             Post
           </Button>
