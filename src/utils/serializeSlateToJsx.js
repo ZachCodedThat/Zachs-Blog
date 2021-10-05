@@ -21,21 +21,18 @@ const Serialize = (node) => {
     dark: "highlight",
   };
 
+  const boldRegex = new RegExp("[**][a-zA-Z]+[**]");
+  const italicRegex = new RegExp("._[a-zA-Z]+._");
+
   if (Text.isText(node)) {
     let string = node.text;
-    if (node.bold) {
-      string = <strong>{string}</strong>;
-    }
-
-    if (node.code) {
+    if (node.bold || node.text.match(boldRegex)) {
+      string = <strong>{string.replace(/[**]+/g, "")}</strong>;
+    } else if (node.code) {
       string = <code>{string}</code>;
-    }
-
-    if (node.italic) {
-      string = <em>{string}</em>;
-    }
-
-    if (node.underline) {
+    } else if (node.italic || node.text.match(italicRegex)) {
+      string = <em>{string.replace(/[_]+/g, "")}</em>;
+    } else if (node.underline) {
       string = <u>{string}</u>;
     }
     return string;

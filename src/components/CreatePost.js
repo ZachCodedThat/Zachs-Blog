@@ -27,7 +27,7 @@ const CreatePost = () => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [body, setBody] = useState([
-    { type: "paragraph", children: [{ text: "", marks: "" }] },
+    { type: "paragraph", children: [{ text: "" }] },
   ]);
 
   const createPost = async (e) => {
