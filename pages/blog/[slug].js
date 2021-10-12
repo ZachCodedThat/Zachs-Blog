@@ -33,7 +33,8 @@ export default function PostPage({ post }) {
   };
 
   return (
-    <Container>
+    <>
+      <Container />
       <Stack
         as="main"
         borderRadius="10px"
@@ -59,7 +60,9 @@ export default function PostPage({ post }) {
           </Box>
         </NextLink>
         <Flex className="card card-page">
-          <Heading fontSize="6xl">{title} </Heading>
+          <Heading fontSize="6xl" color={color[colorMode]}>
+            {title}{" "}
+          </Heading>
         </Flex>
         <Text
           bg={color[colorMode]}
@@ -82,6 +85,7 @@ export default function PostPage({ post }) {
 
         <Flex
           as="post-body"
+          color={color[colorMode]}
           width="100%"
           align="flex-start"
           justifyContent="space-between"
@@ -90,7 +94,7 @@ export default function PostPage({ post }) {
           {body.map((node) => Serialize(node))}
         </Flex>
       </Stack>
-    </Container>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 
 import DarkModeSwitch from "./DarkModeSwitch";
 
-const Container = ({ children }) => {
+const Container = () => {
   const { colorMode } = useColorMode();
 
   const bgColor = {
@@ -57,18 +57,6 @@ const Container = ({ children }) => {
 
         <DarkModeSwitch />
       </StickyNav>
-
-      <Flex
-        as="main"
-        justifyContent="center"
-        flexDirection="column"
-        bg={bgColor[colorMode]}
-        color={color[colorMode]}
-        px={[0, 4, 4]}
-        mt={[4, 8, 8]}
-      >
-        {children}
-      </Flex>
     </>
   );
 };

@@ -20,6 +20,10 @@ const Serialize = (node) => {
     light: "primary",
     dark: "highlight",
   };
+  const textColor = {
+    light: "black",
+    dark: "white",
+  };
 
   const boldRegex = new RegExp("[**][a-zA-Z]+[**]");
   const italicRegex = new RegExp("._[a-zA-Z]+._");
@@ -46,6 +50,7 @@ const Serialize = (node) => {
     case "bulleted-list":
       return (
         <ChakraList
+          color={textColor[colorMode]}
           display="block"
           marginBlockStart="1em"
           marginBlockEnd="1em"
@@ -69,7 +74,7 @@ const Serialize = (node) => {
           marginLeft="0"
           marginRight="0"
           paddingLeft="10px"
-          color="#aaa"
+          color={textColor[colorMode]}
         >
           {children}
         </chakra.blockquote>
@@ -113,7 +118,7 @@ const Serialize = (node) => {
       );
     case "paragraph":
       return (
-        <chakra.p fontSize="20px" margin="10px 0">
+        <chakra.p fontSize="20px" margin="10px 0" color={textColor[colorMode]}>
           {children}
         </chakra.p>
       );

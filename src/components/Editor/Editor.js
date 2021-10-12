@@ -94,37 +94,10 @@ export default function SlateEditor({ value, setValue }) {
           decorate={decorate}
           placeholder="Write some markdown..."
           autoFocus
-          onSelect={() => {
-            /**
-             * Chrome doesn't scroll at bottom of the page. This fixes that.
-             */
-            if (!window.chrome) return;
-            if (editor.selection == null) return;
-            try {
-              /**
-               * Need a try/catch because sometimes you get an error like:
-               *
-               * Error: Cannot resolve a DOM node from Slate node: {"type":"p","children":[{"text":"","by":-1,"at":-1}]}
-               */
-              const domPoint = ReactEditor.toDOMPoint(
-                editor,
-                editor.selection.focus
-              );
-              const node = domPoint[0];
-              if (node == null) return;
-              const element = node.parentElement;
-              if (element == null) return;
-              element.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            } catch (e) {
-              /**
-               * Empty catch. Do nothing if there is an error.
-               */
-            }
-          }}
         />
       </Slate>
 
-      <h1> value: {JSON.stringify(value)} </h1>
+      {/* <h1> value: {JSON.stringify(value)} </h1> */}
     </>
   );
 }

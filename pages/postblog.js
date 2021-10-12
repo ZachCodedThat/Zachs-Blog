@@ -5,11 +5,17 @@ import CreatePost from "@components/CreatePost";
 
 const BlogPost = () => {
   return (
-    <Container>
-      <Flex>
+    <>
+      <Container />
+      <Flex
+        justifyContent="center"
+        flexDirection="column"
+        px={[0, 4, 4]}
+        mt={[4, 8, 8]}
+      >
         <CreatePost />
       </Flex>
-    </Container>
+    </>
   );
 };
 

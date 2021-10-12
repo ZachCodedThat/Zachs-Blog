@@ -50,6 +50,14 @@ const CreatePost = () => {
     console.log("firing");
   };
 
+  // const changeScroll = () => {
+  //   if (Box.h < Box.maxHeight) {
+  //     Box.overflowY = "none";
+  //   } else {
+  //     Box.overflowY = "scroll";
+  //   }
+  // };
+
   const { colorMode } = useColorMode();
   const color = {
     light: "primary",
@@ -121,6 +129,8 @@ const CreatePost = () => {
               color={colorMode === "light" ? "black" : "white"}
               p={4}
               maxWidth={[400, 650, 750, 850, 1000]}
+              maxHeight="400px"
+              overflowY="auto"
             >
               <SlateEditor value={body} setValue={setBody} />
             </Box>
