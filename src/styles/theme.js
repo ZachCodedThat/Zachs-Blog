@@ -33,11 +33,15 @@ const breakpoints = createBreakpoints({
 });
 
 const colors = {
-  primary: "#845EC2",
-  secondary: "#FF6F91",
-  highlight: "#00C9A7",
-  warning: "#FFC75F",
-  danger: "#C34A36",
+  primary: "#FFECD1",
+  secondary: "#001524",
+  highlightLight: "#15616D",
+  hightlightDark: "#FFECD1",
+  backgroundLight: "#FFECD1",
+  backgroundDark: "#001524",
+  textLight: "#001524",
+  textDark: "#FFECD1",
+  accentColor: "#15616D",
 };
 
 const overrides = {

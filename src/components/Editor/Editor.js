@@ -97,7 +97,7 @@ export default function SlateEditor({ value, setValue }) {
         />
       </Slate>
 
-      {/* <h1> value: {JSON.stringify(value)} </h1> */}
+      <h1> value: {JSON.stringify(value)} </h1>
     </>
   );
 }

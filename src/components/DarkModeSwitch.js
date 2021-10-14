@@ -4,8 +4,8 @@ import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const iconColor = {
-    light: "primary",
-    dark: "highlight",
+    light: "secondary",
+    dark: "primary",
   };
 
   return (

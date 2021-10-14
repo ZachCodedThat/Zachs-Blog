@@ -9,18 +9,18 @@ const Container = () => {
   const { colorMode } = useColorMode();
 
   const bgColor = {
-    light: "white",
-    dark: "#171717",
+    light: "backgroundLight",
+    dark: "backgroundDark",
   };
 
   const color = {
-    light: "black",
-    dark: "white",
+    light: "textLight",
+    dark: "textDark",
   };
 
   const navHoverBg = {
-    light: "primary",
-    dark: "highlight",
+    light: "highlightLight",
+    dark: "primary",
   };
 
   const StickyNav = styled(Flex)`
