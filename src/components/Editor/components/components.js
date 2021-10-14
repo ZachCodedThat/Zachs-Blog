@@ -31,7 +31,7 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
         position: relative;
         padding: 1px 18px 17px;
         margin: 0 -10px;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #15616d;
 
         margin-bottom: 20px;
       `
@@ -45,16 +45,16 @@ export const Icon = React.forwardRef(
     const { colorMode } = useColorMode();
 
     const iconColor = {
-      light: "white",
-      dark: "#171717",
+      light: "primary",
+      dark: "secondary",
     };
     const iconBgColor = {
-      light: "primary",
-      dark: "highlight",
+      light: "highlightLight",
+      dark: "primary",
     };
     const activeHoverBg = {
-      light: "highlight",
-      dark: "white",
+      light: "primary",
+      dark: "secondary",
     };
     return (
       <IconButton
@@ -63,10 +63,7 @@ export const Icon = React.forwardRef(
         variant="ghost"
         bg={active ? iconBgColor[colorMode] : "none"}
         color={active ? iconColor[colorMode] : "none"}
-        _hover={{ bg: iconBgColor[colorMode], color: iconColor[colorMode] }}
-        _active={{
-          color: "white",
-        }}
+        _hover={{ bg: iconBgColor[colorMode], color: activeHoverBg[colorMode] }}
       />
     );
   }

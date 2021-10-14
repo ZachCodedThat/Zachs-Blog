@@ -22,16 +22,28 @@ const Post = ({ posts }) => {
 
   const { colorMode } = useColorMode();
   const color = {
-    light: "primary",
-    dark: "highlight",
+    light: "secondary",
+    dark: "primary",
+  };
+  const textColor = {
+    light: "textLight",
+    dark: "textDark",
   };
   const navHoverBg = {
-    light: "primary",
-    dark: "highlight",
+    light: "highlightLight",
+    dark: "primary",
   };
   const buttonTextHover = {
-    light: "white",
-    dark: "black",
+    light: "primary",
+    dark: "secondary",
+  };
+  const accentColor = {
+    light: "accentColor",
+    dark: "accentColor",
+  };
+  const dateText = {
+    light: "textDark",
+    dark: "textDark",
   };
 
   return (
@@ -45,22 +57,28 @@ const Post = ({ posts }) => {
       maxWidth="700px"
       px={2}
     >
-      <Heading padding="10px" marginBottom="-5" color={color[colorMode]}>
+      <Heading padding="10px" marginBottom="-5" color={textColor[colorMode]}>
         {title}
       </Heading>
       <Image src={image} alt="" borderRadius="10px" />
 
-      <Text bg={color[colorMode]} color="black" padding="5px" width="100%">
+      <Text
+        bg={accentColor[colorMode]}
+        color={dateText[colorMode]}
+        padding="5px"
+        width="100%"
+      >
         Posted on {date}
       </Text>
 
-      <Text padding="10px" fontSize="lg">
+      <Text padding="10px" fontSize="lg" color={textColor[colorMode]}>
         {description}
       </Text>
       <Box>
         <NextLink href={`/blog/${slug}`}>
           <Button
             variant="ghost"
+            color={textColor[colorMode]}
             marginBottom="5px"
             as="a"
             _hover={{
@@ -73,6 +91,7 @@ const Post = ({ posts }) => {
         </NextLink>
         <Button
           onClick={() => deletePost(id)}
+          color={textColor[colorMode]}
           variant="ghost"
           marginBottom="5px"
           _hover={{

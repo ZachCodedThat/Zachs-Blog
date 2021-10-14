@@ -24,12 +24,28 @@ export default function PostPage({ post }) {
 
   const { colorMode } = useColorMode();
   const color = {
-    light: "primary",
-    dark: "highlight",
+    light: "highlightLight",
+    dark: "hightlightDark",
+  };
+  const textColor = {
+    light: "textLight",
+    dark: "textDark",
   };
   const navHoverBg = {
+    light: "highlightLight",
+    dark: "primary",
+  };
+  const buttonTextHover = {
     light: "primary",
-    dark: "highlight",
+    dark: "secondary",
+  };
+  const accentColor = {
+    light: "accentColor",
+    dark: "accentColor",
+  };
+  const dateText = {
+    light: "textDark",
+    dark: "textDark",
   };
 
   return (
@@ -48,11 +64,15 @@ export default function PostPage({ post }) {
         <NextLink href="/">
           <Box>
             <Button
+              color={textColor[colorMode]}
               size="md"
               variant="ghost"
               cursor="pointer"
               marginBottom="5px"
-              _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+              _hover={{
+                bg: navHoverBg[colorMode],
+                color: buttonTextHover[colorMode],
+              }}
               as="a"
             >
               Back
@@ -60,13 +80,13 @@ export default function PostPage({ post }) {
           </Box>
         </NextLink>
         <Flex className="card card-page">
-          <Heading fontSize="6xl" color={color[colorMode]}>
+          <Heading fontSize="6xl" color={textColor[colorMode]}>
             {title}{" "}
           </Heading>
         </Flex>
         <Text
-          bg={color[colorMode]}
-          color="black"
+          bg={accentColor[colorMode]}
+          color={dateText[colorMode]}
           as="date"
           padding="5px"
           width="100%"

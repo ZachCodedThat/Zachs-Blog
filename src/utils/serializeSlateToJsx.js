@@ -17,8 +17,8 @@ import {
 const Serialize = (node) => {
   const { colorMode } = useColorMode();
   const color = {
-    light: "primary",
-    dark: "highlight",
+    light: "textLight",
+    dark: "textDark",
   };
   const textColor = {
     light: "black",
