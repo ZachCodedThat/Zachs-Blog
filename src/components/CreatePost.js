@@ -60,16 +60,24 @@ const CreatePost = () => {
 
   const { colorMode } = useColorMode();
   const color = {
-    light: "primary",
-    dark: "highlight",
+    light: "textLight",
+    dark: "textDark",
+  };
+  const textColor = {
+    light: "textLight",
+    dark: "textDark",
   };
   const navHoverBg = {
-    light: "primary",
-    dark: "highlight",
+    light: "highlightLight",
+    dark: "backgroundLight",
   };
-  const bgColor = {
-    light: "primary",
-    dark: "highlight",
+  const hoverTextColor = {
+    light: "textDark",
+    dark: "textLight",
+  };
+  const editorBg = {
+    light: "backgroundLight",
+    dark: "backgroundDark",
   };
   return (
     <Stack direction="column" justify="center" align="center">
@@ -88,6 +96,8 @@ const CreatePost = () => {
             <Box>
               <FormLabel color={color[colorMode]}>Title</FormLabel>
               <Input
+                border="2px solid"
+                borderColor={color[colorMode]}
                 color={color[colorMode]}
                 type="text"
                 value={title}
@@ -100,6 +110,8 @@ const CreatePost = () => {
               Description
             </FormLabel>
             <Input
+              border="2px solid"
+              borderColor={color[colorMode]}
               color={color[colorMode]}
               type="text"
               value={description}
@@ -112,6 +124,8 @@ const CreatePost = () => {
                 Date
               </FormLabel>
               <Input
+                border="2px solid"
+                borderColor={color[colorMode]}
                 color={color[colorMode]}
                 type="date"
                 value={date}
@@ -122,11 +136,11 @@ const CreatePost = () => {
           <FormControl isRequired>
             <Box
               mt={6}
-              border="2px solid "
-              bg={colorMode === "light" ? "white" : "#171717"}
+              border="2px solid"
+              bg={editorBg[colorMode]}
               borderColor={color[colorMode]}
               wrap="wrap"
-              color={colorMode === "light" ? "black" : "white"}
+              color={color[colorMode]}
               p={4}
               maxWidth={[400, 650, 750, 850, 1000]}
               maxHeight="400px"
@@ -137,9 +151,13 @@ const CreatePost = () => {
           </FormControl>
           <Button
             size="lg"
+            color={textColor[colorMode]}
             variant="ghost"
             cursor="pointer"
-            _hover={{ bg: navHoverBg[colorMode], color: "black" }}
+            _hover={{
+              bg: navHoverBg[colorMode],
+              color: hoverTextColor[colorMode],
+            }}
             type="submit"
             mt={6}
           >

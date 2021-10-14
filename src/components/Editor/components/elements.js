@@ -9,8 +9,8 @@ import {
 const Element = ({ attributes, children, element }) => {
   const { colorMode } = useColorMode();
   const color = {
-    light: "primary",
-    dark: "highlight",
+    light: "secondary",
+    dark: "primary",
   };
 
   switch (element.type) {
