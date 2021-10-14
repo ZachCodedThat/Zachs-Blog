@@ -1,34 +1,22 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# The Run Down 
 
-First, run the development server:
+This is my personal blog platform complete with a customized Slate editor that is hooked to a Supabase server and styled using the Chakra-UI component library. 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# The Stack
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Next.js
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[![7c546588-nextjs](https://user-images.githubusercontent.com/78383115/137374869-172a32d2-5c88-4256-af41-7e675b3bc4a1.png)](https://nextjs.org/)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Chakra-ui
 
-To learn more about Next.js, take a look at the following resources:
+[![images](https://user-images.githubusercontent.com/78383115/137374531-124b8d23-30c9-47e5-a7d0-44c41d22f094.jpg)](https://chakra-ui.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Supabase
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![images](https://user-images.githubusercontent.com/78383115/137374433-8f653f08-26ed-4a5e-a0a5-6f79db527169.png)](https://supabase.io/)
