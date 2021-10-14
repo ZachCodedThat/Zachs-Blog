@@ -20,3 +20,9 @@ This is my personal blog platform complete with a customized Slate editor that i
 ## Supabase
 
 [![images](https://user-images.githubusercontent.com/78383115/137374433-8f653f08-26ed-4a5e-a0a5-6f79db527169.png)](https://supabase.io/)
+
+
+## Slatejs
+
+[![oOhrc](https://user-images.githubusercontent.com/78383115/137375757-18079622-3280-4c31-a9a0-e0ee62587d6c.png)](https://www.slatejs.org/examples/richtext)
+
