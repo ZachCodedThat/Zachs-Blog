@@ -1,7 +1,8 @@
 import Post from "@components/Post";
+import Image from "next/image";
 import { sortByID } from "@utils/index";
 import Container from "@components/Container";
-import { Image, Flex, Box, useColorMode, Stack } from "@chakra-ui/react";
+import { Flex, Box, useColorMode, Stack } from "@chakra-ui/react";
 import supabase from "@utils/initSupabase";
 
 const Home = ({ posts }) => {
@@ -14,22 +15,12 @@ const Home = ({ posts }) => {
 
   const color = {
     light: "secondary",
-    dark: "primary",
   };
   return (
     <>
       <Container />
       <Stack alignItems="center">
-        <object
-          type="image/svg+xml"
-          data="/SVGsig.svg"
-          alt=""
-          width="75%"
-          height="75%"
-          placeholder=""
-        >
-          <img src="/SVGsig.svg" />
-        </object>
+        <Image src="/Signature.svg" height={500} width={500} />
 
         <Flex
           as="main"
