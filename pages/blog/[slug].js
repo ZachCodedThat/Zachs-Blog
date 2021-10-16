@@ -14,6 +14,13 @@ import {
   Button,
   Stack,
 } from "@chakra-ui/react";
+import {
+  accentColor,
+  dateTextColor,
+  buttonHoverColor,
+  buttonTextHoverColor,
+  textColor,
+} from "@styles/colorModeStyles";
 
 // post is passed from GSprops and is destructured to make it easier to work with within the JSX.
 
@@ -23,30 +30,6 @@ export default function PostPage({ post }) {
   const { title, image, date, body, id } = post;
 
   const { colorMode } = useColorMode();
-  const color = {
-    light: "highlightLight",
-    dark: "hightlightDark",
-  };
-  const textColor = {
-    light: "textLight",
-    dark: "textDark",
-  };
-  const navHoverBg = {
-    light: "highlightLight",
-    dark: "primary",
-  };
-  const buttonTextHover = {
-    light: "primary",
-    dark: "secondary",
-  };
-  const accentColor = {
-    light: "accentColor",
-    dark: "accentColor",
-  };
-  const dateText = {
-    light: "textDark",
-    dark: "textDark",
-  };
 
   return (
     <>
@@ -70,8 +53,8 @@ export default function PostPage({ post }) {
               cursor="pointer"
               marginBottom="5px"
               _hover={{
-                bg: navHoverBg[colorMode],
-                color: buttonTextHover[colorMode],
+                bg: buttonHoverColor[colorMode],
+                color: buttonTextHoverColor[colorMode],
               }}
               as="a"
             >
@@ -86,7 +69,7 @@ export default function PostPage({ post }) {
         </Flex>
         <Text
           bg={accentColor[colorMode]}
-          color={dateText[colorMode]}
+          color={dateTextColor[colorMode]}
           as="date"
           padding="5px"
           width="100%"
@@ -105,7 +88,6 @@ export default function PostPage({ post }) {
 
         <Flex
           as="post-body"
-          color={color[colorMode]}
           width="100%"
           align="flex-start"
           justifyContent="space-between"

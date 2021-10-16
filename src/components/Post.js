@@ -9,7 +9,14 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
-
+import {
+  textColor,
+  dateTextColor,
+  borderColor,
+  accentColor,
+  buttonTextHoverColor,
+  buttonHoverColor,
+} from "@styles/colorModeStyles";
 const Post = ({ posts }) => {
   const { title, date, description, id, slug, image } = posts;
 
@@ -21,36 +28,12 @@ const Post = ({ posts }) => {
   }
 
   const { colorMode } = useColorMode();
-  const color = {
-    light: "secondary",
-    dark: "primary",
-  };
-  const textColor = {
-    light: "textLight",
-    dark: "textDark",
-  };
-  const navHoverBg = {
-    light: "highlightLight",
-    dark: "primary",
-  };
-  const buttonTextHover = {
-    light: "primary",
-    dark: "secondary",
-  };
-  const accentColor = {
-    light: "accentColor",
-    dark: "accentColor",
-  };
-  const dateText = {
-    light: "textDark",
-    dark: "textDark",
-  };
 
   return (
     <Stack
       as="main"
       border="solid"
-      borderColor={color[colorMode]}
+      borderColor={borderColor[colorMode]}
       borderRadius="10px"
       spacing={10}
       m="0 auto 4rem auto"
@@ -60,11 +43,11 @@ const Post = ({ posts }) => {
       <Heading padding="10px" marginBottom="-5" color={textColor[colorMode]}>
         {title}
       </Heading>
-      <Image src={image} alt="" borderRadius="10px" />
+      <Image srcSet={image} alt="" borderRadius="10px" />
 
       <Text
         bg={accentColor[colorMode]}
-        color={dateText[colorMode]}
+        color={dateTextColor[colorMode]}
         padding="5px"
         width="100%"
       >
@@ -82,8 +65,8 @@ const Post = ({ posts }) => {
             marginBottom="5px"
             as="a"
             _hover={{
-              bg: navHoverBg[colorMode],
-              color: buttonTextHover[colorMode],
+              bg: buttonHoverColor[colorMode],
+              color: buttonTextHoverColor[colorMode],
             }}
           >
             Read More
@@ -95,8 +78,8 @@ const Post = ({ posts }) => {
           variant="ghost"
           marginBottom="5px"
           _hover={{
-            bg: navHoverBg[colorMode],
-            color: buttonTextHover[colorMode],
+            bg: buttonHoverColor[colorMode],
+            color: buttonTextHoverColor[colorMode],
           }}
           as="a"
         >

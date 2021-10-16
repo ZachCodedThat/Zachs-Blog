@@ -1,7 +1,10 @@
 // import { Text as ChakraText } from "@chakra-ui/react";
 // import escapeHtml from "escape-html";
 import { Text } from "slate";
+import { textColor } from "@styles/colorModeStyles";
 import {
+  Box,
+  Code,
   Heading as ChakraHeading,
   List as ChakraList,
   ListItem as ChakraListitem,
@@ -16,29 +19,27 @@ import {
 
 const Serialize = (node) => {
   const { colorMode } = useColorMode();
-  const color = {
-    light: "textLight",
-    dark: "textDark",
-  };
-  const textColor = {
-    light: "black",
-    dark: "white",
-  };
 
-  const boldRegex = new RegExp("[**][a-zA-Z]+[**]");
-  const italicRegex = new RegExp("._[a-zA-Z]+._");
+  // const boldRegex = new RegExp("[**][a-zA-Z]+[**]");
+  // const italicRegex = new RegExp("._[a-zA-Z]+._");
+  // const textRegex = new RegExp("[_*]+[a-zA-Z]+[_*]+");
 
   if (Text.isText(node)) {
     let string = node.text;
-    if (node.bold || node.text.match(boldRegex)) {
-      string = <strong>{string.replace(/[**]+/g, "")}</strong>;
-    } else if (node.code) {
+    if (node.bold) {
+      string = <strong>{string}</strong>;
+    }
+    if (node.code) {
       string = <code>{string}</code>;
-    } else if (node.italic || node.text.match(italicRegex)) {
-      string = <em>{string.replace(/[_]+/g, "")}</em>;
-    } else if (node.underline) {
+    }
+    if (node.italic) {
+      string = <em>{string}</em>;
+    }
+    if (node.underline) {
       string = <u>{string}</u>;
     }
+    console.log(string);
+
     return string;
   }
 
@@ -47,7 +48,26 @@ const Serialize = (node) => {
   // console.log(children);
 
   switch (node.type) {
+    case "code":
+      return (
+        <Box border="2px solid" borderColor={textColor[colorMode]}>
+          <code>{children}</code>
+        </Box>
+      );
     case "bulleted-list":
+      return (
+        <ChakraList
+          color={textColor[colorMode]}
+          display="block"
+          marginBlockStart="1em"
+          marginBlockEnd="1em"
+          marginInlineStart="0px"
+          paddingInlineStart="40px"
+        >
+          {children}
+        </ChakraList>
+      );
+    case "numbered-list":
       return (
         <ChakraList
           color={textColor[colorMode]}
@@ -84,7 +104,7 @@ const Serialize = (node) => {
       return (
         <ChakraHeading
           as="h1"
-          color={color[colorMode]}
+          color={textColor[colorMode]}
           size="4xl"
           lineHeight="2"
           fontWeight="bold"
@@ -96,7 +116,7 @@ const Serialize = (node) => {
       return (
         <ChakraHeading
           as="h2"
-          color={color[colorMode]}
+          color={textColor[colorMode]}
           size="2xl"
           lineHeight="2"
           fontWeight="bold"
@@ -108,7 +128,7 @@ const Serialize = (node) => {
       return (
         <ChakraHeading
           as="h3"
-          color={color[colorMode]}
+          color={textColor[colorMode]}
           size="xl"
           lineHeight="2"
           fontWeight="bold"

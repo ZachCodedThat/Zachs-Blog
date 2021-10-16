@@ -7,19 +7,22 @@ import SlateEditor from "./Editor";
 
 import {
   useColorMode,
-  useToast,
   Heading,
-  Text,
   Flex,
   Box,
-  Link,
-  Image,
   Button,
   Stack,
   Input,
   FormControl,
   FormLabel,
 } from "@chakra-ui/react";
+import {
+  textColor,
+  borderColor,
+  buttonTextHoverColor,
+  buttonHoverColor,
+  editorBg,
+} from "@styles/colorModeStyles";
 
 const CreatePost = () => {
   // const toast = useToast(); // use the try/catch within the fetch and you need 2 one for passing and one for failing.
@@ -50,35 +53,8 @@ const CreatePost = () => {
     console.log("firing");
   };
 
-  // const changeScroll = () => {
-  //   if (Box.h < Box.maxHeight) {
-  //     Box.overflowY = "none";
-  //   } else {
-  //     Box.overflowY = "scroll";
-  //   }
-  // };
-
   const { colorMode } = useColorMode();
-  const color = {
-    light: "textLight",
-    dark: "textDark",
-  };
-  const textColor = {
-    light: "textLight",
-    dark: "textDark",
-  };
-  const navHoverBg = {
-    light: "highlightLight",
-    dark: "backgroundLight",
-  };
-  const hoverTextColor = {
-    light: "textDark",
-    dark: "textLight",
-  };
-  const editorBg = {
-    light: "backgroundLight",
-    dark: "backgroundDark",
-  };
+
   return (
     <Stack direction="column" justify="center" align="center">
       <Flex
@@ -87,18 +63,18 @@ const CreatePost = () => {
         minW={[350, 600, 700, 800, 900]}
         pl={[2]}
       >
-        <Heading color={color[colorMode]} mb={6}>
+        <Heading color={textColor[colorMode]} mb={6}>
           Add Blog
         </Heading>
 
         <form onSubmit={createPost}>
           <FormControl id="title" isRequired>
             <Box>
-              <FormLabel color={color[colorMode]}>Title</FormLabel>
+              <FormLabel color={textColor[colorMode]}>Title</FormLabel>
               <Input
                 border="2px solid"
-                borderColor={color[colorMode]}
-                color={color[colorMode]}
+                borderColor={borderColor[colorMode]}
+                color={textColor[colorMode]}
                 type="text"
                 value={title}
                 onChange={({ target }) => setTitle(target.value)}
@@ -106,13 +82,13 @@ const CreatePost = () => {
             </Box>
           </FormControl>
           <Box>
-            <FormLabel color={color[colorMode]} pt={[2, 4]}>
+            <FormLabel color={textColor[colorMode]} pt={[2, 4]}>
               Description
             </FormLabel>
             <Input
               border="2px solid"
-              borderColor={color[colorMode]}
-              color={color[colorMode]}
+              borderColor={borderColor[colorMode]}
+              color={textColor[colorMode]}
               type="text"
               value={description}
               onChange={({ target }) => setDescription(target.value)}
@@ -120,13 +96,13 @@ const CreatePost = () => {
           </Box>
           <FormControl id="Date" isRequired>
             <Box>
-              <FormLabel color={color[colorMode]} pt={[2, 4]}>
+              <FormLabel color={textColor[colorMode]} pt={[2, 4]}>
                 Date
               </FormLabel>
               <Input
                 border="2px solid"
-                borderColor={color[colorMode]}
-                color={color[colorMode]}
+                borderColor={borderColor[colorMode]}
+                color={textColor[colorMode]}
                 type="date"
                 value={date}
                 onChange={({ target }) => setDate(target.value)}
@@ -138,9 +114,9 @@ const CreatePost = () => {
               mt={6}
               border="2px solid"
               bg={editorBg[colorMode]}
-              borderColor={color[colorMode]}
+              borderColor={borderColor[colorMode]}
               wrap="wrap"
-              color={color[colorMode]}
+              color={textColor[colorMode]}
               p={4}
               maxWidth={[400, 650, 750, 850, 1000]}
               maxHeight="400px"
@@ -155,8 +131,8 @@ const CreatePost = () => {
             variant="ghost"
             cursor="pointer"
             _hover={{
-              bg: navHoverBg[colorMode],
-              color: hoverTextColor[colorMode],
+              bg: buttonHoverColor[colorMode],
+              color: buttonTextHoverColor[colorMode],
             }}
             type="submit"
             mt={6}

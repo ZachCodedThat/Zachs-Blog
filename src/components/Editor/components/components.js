@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  toolbarIconColor,
+  iconBgColor,
+  iconTextHoverColor,
+} from "@styles/colorModeStyles";
 
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
@@ -44,26 +49,17 @@ export const Icon = React.forwardRef(
   ({ className, active, reversed, ...props }, ref) => {
     const { colorMode } = useColorMode();
 
-    const iconColor = {
-      light: "primary",
-      dark: "secondary",
-    };
-    const iconBgColor = {
-      light: "highlightLight",
-      dark: "primary",
-    };
-    const activeHoverBg = {
-      light: "primary",
-      dark: "secondary",
-    };
     return (
       <IconButton
         {...props}
         ref={ref}
         variant="ghost"
         bg={active ? iconBgColor[colorMode] : "none"}
-        color={active ? iconColor[colorMode] : "none"}
-        _hover={{ bg: iconBgColor[colorMode], color: activeHoverBg[colorMode] }}
+        color={active ? toolbarIconColor[colorMode] : "none"}
+        _hover={{
+          bg: iconBgColor[colorMode],
+          color: iconTextHoverColor[colorMode],
+        }}
       />
     );
   }

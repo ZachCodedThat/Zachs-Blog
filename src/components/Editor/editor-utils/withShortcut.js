@@ -7,6 +7,7 @@ import {
 } from "slate";
 
 const SHORTCUTS = {
+  "``": "code",
   "*": "list-item",
   "-": "list-item",
   "+": "list-item",

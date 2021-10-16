@@ -4,18 +4,11 @@ import { sortByID } from "@utils/index";
 import Container from "@components/Container";
 import { Flex, Box, useColorMode, Stack } from "@chakra-ui/react";
 import supabase from "@utils/initSupabase";
+import { bgColor } from "@styles/colorModeStyles";
 
 const Home = ({ posts }) => {
   const { colorMode } = useColorMode();
 
-  const bgColor = {
-    light: "backgroundLight",
-    dark: "#backgroundDark",
-  };
-
-  const color = {
-    light: "secondary",
-  };
   return (
     <>
       <Container />
@@ -27,7 +20,6 @@ const Home = ({ posts }) => {
           justifyContent="center"
           flexDirection="column"
           bg={bgColor[colorMode]}
-          color={color[colorMode]}
           px={[4, 4, 4]}
           mt={[4, 8, 8]}
         >

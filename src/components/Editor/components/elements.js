@@ -1,19 +1,24 @@
 import {
+  Box,
+  Code,
   Heading as ChakraHeading,
   useColorMode,
   List as ChakraList,
   ListItem as ChakraListitem,
   chakra,
 } from "@chakra-ui/react";
+import { textColor } from "@styles/colorModeStyles";
 
 const Element = ({ attributes, children, element }) => {
   const { colorMode } = useColorMode();
-  const color = {
-    light: "secondary",
-    dark: "primary",
-  };
 
   switch (element.type) {
+    case "code":
+      return (
+        <Box overflowY="scroll">
+          <Code {...attributes}>{children}</Code>
+        </Box>
+      );
     case "block-quote":
       return (
         <chakra.blockquote
@@ -51,7 +56,7 @@ const Element = ({ attributes, children, element }) => {
       return (
         <ChakraHeading
           as="h1"
-          color={color[colorMode]}
+          color={textColor[colorMode]}
           size="4xl"
           lineHeight="2"
           fontWeight="bold"
@@ -65,7 +70,7 @@ const Element = ({ attributes, children, element }) => {
         <>
           <ChakraHeading
             as="h2"
-            color={color[colorMode]}
+            color={textColor[colorMode]}
             size="3xl"
             lineHeight="2"
             fontWeight="bold"
@@ -79,7 +84,7 @@ const Element = ({ attributes, children, element }) => {
       return (
         <ChakraHeading
           as="h3"
-          color={color[colorMode]}
+          color={textColor[colorMode]}
           size="xl"
           lineHeight="2"
           fontWeight="bold"
