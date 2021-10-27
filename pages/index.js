@@ -1,5 +1,5 @@
 import Post from "@components/Post";
-import Image from "next/image";
+
 import { sortByID } from "@utils/index";
 import Navbar from "@components/Navbar";
 import { Flex, Box, useColorMode, Stack } from "@chakra-ui/react";
@@ -13,8 +13,6 @@ const Home = ({ posts }) => {
     <>
       <Navbar />
       <Stack alignItems="center">
-        <Image src="/Signature.svg" height={500} width={500} />
-
         <Flex
           as="main"
           justifyContent="center"

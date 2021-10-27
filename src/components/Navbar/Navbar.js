@@ -13,7 +13,7 @@ const Navbar = () => {
   const { colorMode } = useColorMode();
 
   const changeBackground = () => {
-    if (window.scrollY >= 400) {
+    if (window.scrollY >= 100) {
       setNavbar(false);
     } else {
       setNavbar(true);
@@ -41,7 +41,7 @@ const Navbar = () => {
       >
         {navbar ? (
           <>
-            <Box delay={(0.1, "ease")}>
+            <Box>
               <NextLink href="/" passHref>
                 <Button
                   as="a"
@@ -75,8 +75,8 @@ const Navbar = () => {
             <DarkModeSwitch />
           </>
         ) : (
-          <>
-            <Fade in={!navbar} delay={(0.1, "ease")}>
+          <Flex>
+            <Fade in={!navbar}>
               <Button
                 size="lg"
                 color={textColor[colorMode]}
@@ -88,7 +88,7 @@ const Navbar = () => {
               </Button>
             </Fade>
             <DarkModeSwitch />
-          </>
+          </Flex>
         )}
       </Flex>
     </>

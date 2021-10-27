@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Box, Heading } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-
+import { useColorMode } from "@chakra-ui/react";
+import { textColor } from "../utils/colors";
 const NotFound = () => {
   const router = useRouter();
-
+  const { colorMode } = useColorMode();
   useEffect(() => {
     SetTimeout(() => {
       router.push("/");
