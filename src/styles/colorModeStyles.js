@@ -52,3 +52,7 @@ export const editorBg = {
   light: "backgroundLight",
   dark: "backgroundDark",
 };
+export const glassCardBGColor = {
+  light: "glassCardBgColorLight",
+  dark: "glassCardBgColorDark",
+};

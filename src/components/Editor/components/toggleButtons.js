@@ -17,7 +17,7 @@ export const BlockButton = ({ format, icon }) => {
         toggleBlock(editor, format);
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Icon>
   );
 };
@@ -32,7 +32,7 @@ export const MarkButton = ({ format, icon }) => {
         toggleMark(editor, format);
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Icon>
   );
 };

@@ -1,6 +1,6 @@
 import supabase from "@utils/initSupabase";
 import NextLink from "next/link";
-import Container from "@components/Container";
+import Navbar from "@components/Navbar";
 import Serialize from "@utils/serializeSlateToJsx";
 
 import {
@@ -33,7 +33,7 @@ export default function PostPage({ post }) {
 
   return (
     <>
-      <Container />
+      <Navbar />
       <Stack
         as="main"
         borderRadius="10px"
@@ -86,15 +86,15 @@ export default function PostPage({ post }) {
           alignSelf="center"
         />
 
-        <Flex
+        <Box
           as="post-body"
-          width="100%"
+          // marginLeft="10px"
           align="flex-start"
           justifyContent="space-between"
           flexDirection={["column", "row"]}
         >
           {body.map((node) => Serialize(node))}
-        </Flex>
+        </Box>
       </Stack>
     </>
   );

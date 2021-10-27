@@ -42,6 +42,10 @@ const colors = {
   textLight: "#001524",
   textDark: "#FFECD1",
   accentColor: "#15616D",
+  glassCardBgColorDark: "rgba(255, 255, 255, 0.1)",
+  glassCardBgColorLight: "rgba(46, 49, 49, .5)",
+  glassCardBoxShadowDark: "rgba(255, 255, 255, .1)",
+  glassCardBoxShadowLight: "rgba(255, 255, 255, .5)",
 };
 
 // const shadows = {

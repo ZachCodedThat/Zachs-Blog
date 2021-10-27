@@ -38,7 +38,6 @@ const Serialize = (node) => {
     if (node.underline) {
       string = <u>{string}</u>;
     }
-    console.log(string);
 
     return string;
   }
@@ -50,13 +49,18 @@ const Serialize = (node) => {
   switch (node.type) {
     case "code":
       return (
-        <Box border="2px solid" borderColor={textColor[colorMode]}>
+        <Box
+          key={children}
+          border="2px solid"
+          borderColor={textColor[colorMode]}
+        >
           <code>{children}</code>
         </Box>
       );
     case "bulleted-list":
       return (
         <ChakraList
+          key={children}
           color={textColor[colorMode]}
           display="block"
           marginBlockStart="1em"
@@ -70,6 +74,7 @@ const Serialize = (node) => {
     case "numbered-list":
       return (
         <ChakraList
+          key={children}
           color={textColor[colorMode]}
           display="block"
           marginBlockStart="1em"
@@ -82,7 +87,7 @@ const Serialize = (node) => {
       );
     case "list-item":
       return (
-        <ChakraListitem listStyleType="disc" fontSize="20px">
+        <ChakraListitem key={children} listStyleType="disc" fontSize="20px">
           {children}
         </ChakraListitem>
       );
@@ -90,6 +95,7 @@ const Serialize = (node) => {
     case "block-quote":
       return (
         <chakra.blockquote
+          key={children}
           borderLeft="2px"
           marginLeft="0"
           marginRight="0"
@@ -103,6 +109,7 @@ const Serialize = (node) => {
     case "heading-one":
       return (
         <ChakraHeading
+          key={children}
           as="h1"
           color={textColor[colorMode]}
           size="4xl"
@@ -115,6 +122,7 @@ const Serialize = (node) => {
     case "heading-two":
       return (
         <ChakraHeading
+          key={children}
           as="h2"
           color={textColor[colorMode]}
           size="2xl"
@@ -127,6 +135,7 @@ const Serialize = (node) => {
     case "heading-three":
       return (
         <ChakraHeading
+          key={children}
           as="h3"
           color={textColor[colorMode]}
           size="xl"
@@ -138,7 +147,12 @@ const Serialize = (node) => {
       );
     case "paragraph":
       return (
-        <chakra.p fontSize="20px" margin="10px 0" color={textColor[colorMode]}>
+        <chakra.p
+          key={children}
+          fontSize="20px"
+          margin="10px 0"
+          color={textColor[colorMode]}
+        >
           {children}
         </chakra.p>
       );

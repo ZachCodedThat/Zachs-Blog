@@ -26,6 +26,7 @@ const Post = ({ posts }) => {
       body: JSON.stringify({ id }),
     });
   }
+  const isDev = process.env.NODE_ENV === "development";
 
   const { colorMode } = useColorMode();
 
@@ -57,7 +58,7 @@ const Post = ({ posts }) => {
       <Text padding="10px" fontSize="lg" color={textColor[colorMode]}>
         {description}
       </Text>
-      <Box>
+      <Box justifyContent="space-between">
         <NextLink href={`/blog/${slug}`}>
           <Button
             variant="ghost"
@@ -72,19 +73,21 @@ const Post = ({ posts }) => {
             Read More
           </Button>
         </NextLink>
-        <Button
-          onClick={() => deletePost(id)}
-          color={textColor[colorMode]}
-          variant="ghost"
-          marginBottom="5px"
-          _hover={{
-            bg: buttonHoverColor[colorMode],
-            color: buttonTextHoverColor[colorMode],
-          }}
-          as="a"
-        >
-          Delete post
-        </Button>
+        {isDev && (
+          <Button
+            onClick={() => deletePost(id)}
+            color={textColor[colorMode]}
+            variant="ghost"
+            marginBottom="5px"
+            _hover={{
+              bg: buttonHoverColor[colorMode],
+              color: buttonTextHoverColor[colorMode],
+            }}
+            as="a"
+          >
+            Delete post
+          </Button>
+        )}
       </Box>
     </Stack>
   );

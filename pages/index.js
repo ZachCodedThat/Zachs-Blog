@@ -1,7 +1,7 @@
 import Post from "@components/Post";
 import Image from "next/image";
 import { sortByID } from "@utils/index";
-import Container from "@components/Container";
+import Navbar from "@components/Navbar";
 import { Flex, Box, useColorMode, Stack } from "@chakra-ui/react";
 import supabase from "@utils/initSupabase";
 import { bgColor } from "@styles/colorModeStyles";
@@ -11,7 +11,7 @@ const Home = ({ posts }) => {
 
   return (
     <>
-      <Container />
+      <Navbar />
       <Stack alignItems="center">
         <Image src="/Signature.svg" height={500} width={500} />
 
