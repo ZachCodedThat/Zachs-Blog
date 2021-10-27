@@ -84,7 +84,7 @@ const Navbar = () => {
                 _active="none"
                 _hover="none"
               >
-                <ChevronUpIcon w={60} h={60} onClick={scrollToTop} />
+                <ChevronUpIcon w="60px" h="60px" onClick={scrollToTop} />
               </Button>
             </Fade>
             <DarkModeSwitch />
