@@ -7,7 +7,7 @@ const NotFound = () => {
   const router = useRouter();
   const { colorMode } = useColorMode();
   useEffect(() => {
-    SetTimeout(() => {
+    setTimeout(() => {
       router.push("/");
     }, 3000);
   }, []);
