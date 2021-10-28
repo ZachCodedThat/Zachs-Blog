@@ -11,6 +11,7 @@ import {
   useColorMode,
   chakra,
 } from "@chakra-ui/react";
+import { regex, replaceMarkdownWithJsx } from "./Regex";
 
 // This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
 //  type value passed by the node to the switch.
@@ -26,17 +27,18 @@ const Serialize = (node) => {
 
   if (Text.isText(node)) {
     let string = node.text;
-    if (node.bold) {
-      string = <strong>{string}</strong>;
+    if (node.bold || string.match(regex.bold)) {
+      string = <strong>{replaceMarkdownWithJsx(string)}</strong>;
     }
+
     if (node.code) {
-      string = <code>{string}</code>;
+      codeString = <code>{string}</code>;
     }
-    if (node.italic) {
-      string = <em>{string}</em>;
+    if (node.italic || string.match(regex.italic)) {
+      string = <em>{replaceMarkdownWithJsx(string)}</em>;
     }
     if (node.underline) {
-      string = <u>{string}</u>;
+      underlineString = <u>{string}</u>;
     }
 
     return string;

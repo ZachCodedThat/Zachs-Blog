@@ -1,3 +1,5 @@
+// @refresh reset
+
 import React, { useCallback, useMemo } from "react";
 import Prism from "prismjs";
 
@@ -54,6 +56,8 @@ export default function SlateEditor({ value, setValue }) {
     const tokens = Prism.tokenize(node.text, Prism.languages.markdown);
     let start = 0;
 
+    console.log(tokens);
+
     for (const token of tokens) {
       const length = getLength(token);
       const end = start + length;
@@ -71,12 +75,15 @@ export default function SlateEditor({ value, setValue }) {
 
     return ranges;
   }, []);
+
   return (
     <>
       <Slate
         editor={editor}
         value={value}
-        onChange={(value) => setValue(value)}
+        onChange={(value) => {
+          setValue(value);
+        }}
       >
         <Toolbar>
           <MarkButton format="bold" icon={<FaBold />} />
