@@ -27,18 +27,18 @@ const Serialize = (node) => {
 
   if (Text.isText(node)) {
     let string = node.text;
-    if (node.bold || string.match(regex.bold)) {
-      string = <strong>{replaceMarkdownWithJsx(string)}</strong>;
+    if (node.bold) {
+      string = <strong>{string}</strong>;
     }
 
     if (node.code) {
-      codeString = <code>{string}</code>;
+      string = <code>{string}</code>;
     }
-    if (node.italic || string.match(regex.italic)) {
-      string = <em>{replaceMarkdownWithJsx(string)}</em>;
+    if (node.italic) {
+      string = <em>{string}</em>;
     }
     if (node.underline) {
-      underlineString = <u>{string}</u>;
+      string = <u>{string}</u>;
     }
 
     return string;
