@@ -21,7 +21,7 @@ export const regex = {
 export const regexReplace = {
   bold: (match, p1) => `${p1}`,
   italic: (match, p1) => `${p1}`,
-  underline: (match, p1) => `<u>${p1}</u>`,
+  underline: (match, p1) => `${p1}`,
   strikethrough: (match, p1) => `<s>${p1}</s>`,
   code: (match, p1) => `<code>${p1}</code>`,
   link: (match, p1, p2) => `<a href="${p2}">${p1}</a>`,

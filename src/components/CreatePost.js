@@ -15,6 +15,7 @@ import {
   Input,
   FormControl,
   FormLabel,
+  Text,
 } from "@chakra-ui/react";
 import {
   textColor,
@@ -140,6 +141,11 @@ const CreatePost = () => {
             Post
           </Button>
         </form>
+        <Box textAlign="center" display="flex" justifyContent="center">
+          <Text color={textColor[colorMode]} verticalAlign="middle" padding={5}>
+            value: {JSON.stringify(body)}
+          </Text>
+        </Box>
       </Flex>
     </Stack>
   );

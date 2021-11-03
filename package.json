@@ -20,6 +20,7 @@
     "focus-visible": "^5.2.0",
     "framer-motion": "^3.10.6",
     "gray-matter": "^4.0.3",
+    "is-hotkey": "^0.2.0",
     "marker": "^0.1.2",
     "next": "11.1.0",
     "next-connect": "^0.10.2",
