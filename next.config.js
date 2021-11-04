@@ -3,4 +3,7 @@ module.exports = {
   images: {
     domains: ["res.cloudinary.com"],
   },
+  experimental: {
+    urlImports: ["https://cdn.skypack.dev"],
+  },
 };
