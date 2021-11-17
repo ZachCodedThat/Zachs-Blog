@@ -88,6 +88,7 @@ export default function PostPage({ post }) {
 
         <Box
           as="post-body"
+          sp
           // marginLeft="10px"
           align="flex-start"
           justifyContent="space-between"

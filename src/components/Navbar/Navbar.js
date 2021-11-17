@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useColorMode, Button, Flex, Box, Fade } from "@chakra-ui/react";
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
