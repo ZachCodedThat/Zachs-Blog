@@ -34,13 +34,14 @@ const Home = ({ posts }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await supabase.from("blogPosts").select();
 
   return {
     props: {
       posts: data.sort(sortByID),
     },
+    revalidate: 5,
   };
 }
 
