@@ -101,7 +101,7 @@ const Serialize = (node) => {
           m={3}
           borderLeft="2px"
           paddingLeft="10px"
-          color={textColor[colorMode]}
+          color="#15616D"
         >
           {children}
         </chakra.blockquote>
@@ -111,7 +111,7 @@ const Serialize = (node) => {
       return (
         <ChakraHeading
           key={children}
-          margin={5}
+          margin={3}
           as="h1"
           color={textColor[colorMode]}
           size="4xl"
@@ -125,7 +125,7 @@ const Serialize = (node) => {
       return (
         <ChakraHeading
           key={children}
-          margin={5}
+          margin={3}
           as="h2"
           color={textColor[colorMode]}
           size="2xl"

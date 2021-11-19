@@ -82,7 +82,7 @@ export default function PostPage({ post }) {
           src={image}
           alt=""
           padding="10px"
-          width="80%"
+          width={{ base: "80%", md: "60%", lg: "50%" }}
           alignSelf="center"
         />
 
