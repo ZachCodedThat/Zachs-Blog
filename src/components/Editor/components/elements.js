@@ -46,6 +46,20 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </ChakraList>
       );
+    case "numbered-list":
+      return (
+        <ChakraList
+          key={children}
+          color={textColor[colorMode]}
+          display="block"
+          marginBlockStart="1em"
+          marginBlockEnd="1em"
+          marginInlineStart="0px"
+          paddingInlineStart="40px"
+        >
+          {children}
+        </ChakraList>
+      );
     case "list-item":
       return (
         <ChakraListitem listStyleType="disc" fontSize="30px" {...attributes}>
