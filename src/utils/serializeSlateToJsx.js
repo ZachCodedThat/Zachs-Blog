@@ -3,15 +3,14 @@
 import { Text } from "slate";
 import { textColor } from "@styles/colorModeStyles";
 import {
+  Text as ChakraText,
   Box,
-  Code,
   Heading as ChakraHeading,
   List as ChakraList,
   ListItem as ChakraListitem,
   useColorMode,
   chakra,
 } from "@chakra-ui/react";
-import { regex, replaceMarkdownWithJsx } from "./Regex";
 
 // This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
 //  type value passed by the node to the switch.
@@ -28,17 +27,17 @@ const Serialize = (node) => {
   if (Text.isText(node)) {
     let string = node.text;
     if (node.bold) {
-      string = <strong>{string}</strong>;
+      string = <strong key={string}>{string}</strong>;
     }
 
     if (node.code) {
-      string = <code>{string}</code>;
+      string = <code key={string}>{string}</code>;
     }
     if (node.italic) {
-      string = <em>{string}</em>;
+      string = <em key={string}>{string}</em>;
     }
     if (node.underline) {
-      string = <u>{string}</u>;
+      string = <u key={string}>{string}</u>;
     }
 
     return string;
@@ -150,14 +149,14 @@ const Serialize = (node) => {
       );
     case "paragraph":
       return (
-        <chakra.p
+        <ChakraText
           key={children}
           fontSize="20px"
           margin={5}
           color={textColor[colorMode]}
         >
           {children}
-        </chakra.p>
+        </ChakraText>
       );
     case "link":
       return `<a href="${escapeHtml(node.url)}">${children}</a>`;

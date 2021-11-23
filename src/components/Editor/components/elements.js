@@ -1,4 +1,5 @@
 import {
+  Text,
   Box,
   Code,
   Heading as ChakraHeading,
@@ -109,7 +110,11 @@ const Element = ({ attributes, children, element }) => {
       );
 
     default:
-      return <p {...attributes}>{children}</p>;
+      return (
+        <Text key={children} {...attributes}>
+          {children}
+        </Text>
+      );
   }
 };
 
