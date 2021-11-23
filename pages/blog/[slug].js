@@ -44,26 +44,11 @@ export default function PostPage({ post }) {
         maxWidth="100%"
         px={2}
       >
-        <NextLink href="/">
-          <Box>
-            <Button
-              color={textColor[colorMode]}
-              size="md"
-              variant="ghost"
-              cursor="pointer"
-              marginBottom="5px"
-              _hover={{
-                bg: buttonHoverColor[colorMode],
-                color: buttonTextHoverColor[colorMode],
-              }}
-              as="a"
-            >
-              Back
-            </Button>
-          </Box>
-        </NextLink>
-        <Flex className="card card-page">
-          <Heading fontSize="6xl" color={textColor[colorMode]}>
+        <Flex>
+          <Heading
+            fontSize={{ base: "2xl", sm: "3xl", md: "4xl", xl: "6xl" }}
+            color={textColor[colorMode]}
+          >
             {title}{" "}
           </Heading>
         </Flex>
@@ -82,7 +67,7 @@ export default function PostPage({ post }) {
           src={image}
           alt=""
           padding="10px"
-          width={{ base: "80%", md: "60%", lg: "50%" }}
+          width={{ base: "90%", sm: "80%", md: "70%", lg: "60%" }}
           alignSelf="center"
         />
 
