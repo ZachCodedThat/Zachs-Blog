@@ -45,7 +45,7 @@ const Serialize = (node) => {
 
   const children = node.children.map((n) => Serialize(n));
 
-  // console.log(children);
+  console.log(children);
 
   switch (node.type) {
     case "code":
@@ -113,7 +113,7 @@ const Serialize = (node) => {
           margin={3}
           as="h1"
           color={textColor[colorMode]}
-          size="4xl"
+          fontSize={{ base: "3xl", md: "4xl", xl: "6xl" }}
           lineHeight="2"
           fontWeight="bold"
         >
@@ -127,7 +127,7 @@ const Serialize = (node) => {
           margin={3}
           as="h2"
           color={textColor[colorMode]}
-          size="2xl"
+          fontSize={{ base: "2xl", md: "3xl", xl: "4xl" }}
           lineHeight="2"
           fontWeight="bold"
         >
@@ -140,7 +140,7 @@ const Serialize = (node) => {
           key={children}
           as="h3"
           color={textColor[colorMode]}
-          size="xl"
+          fontSize="xl"
           lineHeight="2"
           fontWeight="bold"
         >
