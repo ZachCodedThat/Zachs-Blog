@@ -2,6 +2,7 @@
 // import escapeHtml from "escape-html";
 import { Text } from "slate";
 import { textColor } from "@styles/colorModeStyles";
+import escapeHtml from "escape-html";
 import {
   Text as ChakraText,
   Box,
@@ -10,6 +11,7 @@ import {
   ListItem as ChakraListitem,
   useColorMode,
   chakra,
+  Link,
 } from "@chakra-ui/react";
 
 // This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
@@ -44,8 +46,6 @@ const Serialize = (node) => {
   }
 
   const children = node.children.map((n) => Serialize(n));
-
-  console.log(children);
 
   switch (node.type) {
     case "code":
@@ -159,7 +159,11 @@ const Serialize = (node) => {
         </ChakraText>
       );
     case "link":
-      return `<a href="${escapeHtml(node.url)}">${children}</a>`;
+      return (
+        <Link color="green.400" href={escapeHtml(node.url)}>
+          {children}
+        </Link>
+      );
 
     default:
       return children;

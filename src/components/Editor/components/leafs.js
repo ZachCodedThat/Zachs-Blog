@@ -15,7 +15,5 @@ export default function Leaf({ attributes, children, leaf }) {
     children = <u>{children}</u>;
   }
 
-  // console.log(leaf);
-
   return <span {...attributes}>{children}</span>;
 }

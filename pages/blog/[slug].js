@@ -117,7 +117,7 @@ export async function getStaticProps({ params: { slug } }) {
     .select()
     .match({ slug: postSlug });
   const post = data[0];
-  // console.log(data[0]);
+
   if (!post) {
     console.warn(`No content found for slug ${postSlug}`);
   }

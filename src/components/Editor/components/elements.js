@@ -7,6 +7,7 @@ import {
   List as ChakraList,
   ListItem as ChakraListitem,
   chakra,
+  Link,
 } from "@chakra-ui/react";
 import { textColor } from "@styles/colorModeStyles";
 
@@ -107,6 +108,12 @@ const Element = ({ attributes, children, element }) => {
         >
           {children}
         </ChakraHeading>
+      );
+    case "link":
+      return (
+        <Link color="green.400" {...attributes} href={element.url}>
+          {children}
+        </Link>
       );
 
     default:

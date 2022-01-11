@@ -9,8 +9,6 @@ import { bgColor } from "@styles/colorModeStyles";
 const Home = ({ posts }) => {
   const { colorMode } = useColorMode();
 
-  console.log(posts);
-
   return (
     <>
       <Navbar />
