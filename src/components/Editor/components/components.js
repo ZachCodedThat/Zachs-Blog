@@ -5,9 +5,45 @@ import {
   iconTextHoverColor,
 } from "@styles/colorModeStyles";
 
-import { IconButton, useColorMode } from "@chakra-ui/react";
+import { FaDelete } from "react-icons/fa";
+import { Transforms } from "slate";
+import {
+  useSelected,
+  useFocused,
+  useSlateStatic,
+  ReactEditor,
+} from "slate-react";
+
+import {
+  IconButton,
+  useColorMode,
+  Box,
+  Image as ChakraImage,
+} from "@chakra-ui/react";
 
 import { cx, css } from "emotion";
+// eslint-disable-next-line react/display-name
+export const Button = React.forwardRef(
+  ({ className, active, reversed, ...props }, ref) => (
+    <span
+      {...props}
+      ref={ref}
+      className={cx(
+        className,
+        css`
+          cursor: pointer;
+          color: ${reversed
+            ? active
+              ? "white"
+              : "#aaa"
+            : active
+            ? "black"
+            : "#ccc"};
+        `
+      )}
+    />
+  )
+);
 
 // eslint-disable-next-line react/display-name
 export const Menu = React.forwardRef(({ className, ...props }, ref) => (
@@ -64,3 +100,44 @@ export const Icon = React.forwardRef(
     );
   }
 );
+// eslint-disable-next-line react/display-name
+export const ImageIcon = React.forwardRef(({ className, ...props }, ref) => (
+  <IconButton {...props} ref={ref} variant="ghost" icon="x" />
+));
+
+// export default function ImageElement({ attributes, children, element }) {
+//   const editor = useSlateStatic();
+//   const path = ReactEditor.findPath(editor, element);
+
+//   const selected = useSelected();
+//   const focused = useFocused();
+
+//   const removeNodes = () => Transforms.removeNodes(editor, { at: path });
+
+//   console.log(props);
+//   return (
+//     <Box {...attributes}>
+//       {children}
+//       <Box contentEditable={false} position="relative">
+//         <ChakraImage
+//           src={element.url}
+//           display="block"
+//           maxWidth="100%"
+//           maxHeight="20em"
+//           boxShadow={selected && focused ? "0 0 0 3px #B4D5FF" : "none"}
+//         />
+//         <Button
+//           active
+//           onClick={removeNodes}
+//           display={selected && focused ? "inline" : "none"}
+//           position="absolute"
+//           top="0.5em"
+//           left="0.5em"
+//           bg="white"
+//         >
+
+//         </Button>
+//       </Box>
+//     </Box>
+//   );
+// }

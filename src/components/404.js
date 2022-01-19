@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Box, Heading } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useColorMode } from "@chakra-ui/react";

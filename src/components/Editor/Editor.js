@@ -3,14 +3,22 @@
 import { useCallback, useMemo } from "react";
 
 import isUrl from "is-url";
+import imageExtensions from "image-extensions";
 
-import { Slate, Editable, withReact, useSlate, useSelected } from "slate-react";
+import {
+  Slate,
+  Editable,
+  withReact,
+  useSlate,
+  useSlateStatic,
+  ReactEditor,
+} from "slate-react";
+
 import Element from "./components/elements";
 import Leaf from "./components/leafs";
 import { BlockButton, MarkButton } from "./components/toggleButtons";
 import withShortcuts from "./editor-utils/withShortcut";
 import {
-  Text,
   createEditor,
   Range,
   Editor,
@@ -35,6 +43,7 @@ import {
   FaHeading,
   FaLink,
   FaUnlink,
+  FaImage,
 } from "react-icons/fa";
 import { Icon } from "./components/components";
 
@@ -49,7 +58,10 @@ export default function SlateEditor({ value, setValue }) {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(
-    () => withInlines(withShortcuts(withReact(withHistory(createEditor())))),
+    () =>
+      withImages(
+        withInlines(withShortcuts(withReact(withHistory(createEditor()))))
+      ),
     []
   );
 
@@ -73,6 +85,7 @@ export default function SlateEditor({ value, setValue }) {
           <BlockButton format="bulleted-list" icon={<FaListUl />} />
           <AddLinkButton format="link" icon={<FaLink />} />
           <RemoveLinkButton icon={<FaUnlink />} />
+          <InsertImageButton format="image" icon={<FaImage />} />
         </Toolbar>
         <Editable
           renderElement={renderElement}
@@ -196,4 +209,73 @@ const RemoveLinkButton = ({ format, icon }) => {
       {icon}
     </Icon>
   );
+};
+
+// INSERTING IMAGES
+
+const withImages = (editor) => {
+  const { insertData, isVoid } = editor;
+
+  editor.isVoid = (element) => {
+    return element.type === "image" ? true : isVoid(element);
+  };
+
+  editor.insertData = (data) => {
+    const text = data.getData("text/plain");
+    const { files } = data;
+
+    if (files && files.length > 0) {
+      for (const file of files) {
+        const reader = new FileReader();
+        const [mime] = file.type.split("/");
+
+        if (mime === "image") {
+          reader.addEventListener("load", () => {
+            const url = reader.result;
+            insertImage(editor, url);
+          });
+
+          reader.readAsDataURL(file);
+        }
+      }
+    } else if (isImageUrl(text)) {
+      insertImage(editor, text);
+    } else {
+      insertData(data);
+    }
+  };
+
+  return editor;
+};
+
+const insertImage = (editor, url) => {
+  const text = { text: "" };
+  const image = { type: "image", url, children: [text] };
+  Transforms.insertNodes(editor, image);
+};
+
+const InsertImageButton = ({ icon, format }) => {
+  const editor = useSlateStatic();
+  return (
+    <Icon
+      onMouseDown={(event) => {
+        event.preventDefault();
+        const url = window.prompt("Enter the URL of the image:");
+        if (url && !isImageUrl(url)) {
+          alert("URL is not an image");
+          return;
+        }
+        insertImage(editor, url);
+      }}
+    >
+      {icon}
+    </Icon>
+  );
+};
+
+const isImageUrl = (url) => {
+  if (!url) return false;
+  if (!isUrl(url)) return false;
+  const ext = new URL(url).pathname.split(".").pop();
+  return imageExtensions.includes(ext);
 };

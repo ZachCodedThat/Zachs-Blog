@@ -12,6 +12,7 @@ import {
   useColorMode,
   chakra,
   Link,
+  Image as ChakraImage,
 } from "@chakra-ui/react";
 
 // This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
@@ -164,7 +165,20 @@ const Serialize = (node) => {
           {children}
         </Link>
       );
-
+    case "image":
+      return (
+        <Box>
+          {children}
+          <Box contentEditable={false} position="relative">
+            <ChakraImage
+              src={node.url}
+              display="block"
+              maxWidth="100%"
+              maxHeight="20em"
+            />
+          </Box>
+        </Box>
+      );
     default:
       return children;
   }
