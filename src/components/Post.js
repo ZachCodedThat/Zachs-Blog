@@ -9,61 +9,85 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
+import {
+  textColor,
+  dateTextColor,
+  borderColor,
+  accentColor,
+  buttonTextHoverColor,
+  buttonHoverColor,
+} from "@styles/colorModeStyles";
+const Post = ({ posts }) => {
+  const { title, date, description, id, slug, image } = posts;
 
-const Post = ({ post }) => {
+  async function deletePost(id) {
+    await fetch("/api/blogPosts", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    });
+  }
+  const isDev = process.env.NODE_ENV === "development";
+
   const { colorMode } = useColorMode();
-  const color = {
-    light: "primary",
-    dark: "highlight",
-  };
-  const navHoverBg = {
-    light: "primary",
-    dark: "highlight",
-  };
 
   return (
     <Stack
       as="main"
       border="solid"
-      borderColor={color[colorMode]}
+      borderColor={borderColor[colorMode]}
       borderRadius="10px"
       spacing={10}
       m="0 auto 4rem auto"
       maxWidth="700px"
       px={2}
     >
-      <Heading padding="10px" marginBottom="-5" color={color[colorMode]}>
-        {post.frontmatter.title}
+      <Heading padding="10px" marginBottom="-5" color={textColor[colorMode]}>
+        {title}
       </Heading>
-      <Image src={post.frontmatter.cover_image} alt="" borderRadius="10px" />
+      <Image srcSet={image} alt="" borderRadius="10px" />
 
       <Text
-        bg={color[colorMode]}
-        color="black"
-        as="date"
+        bg={accentColor[colorMode]}
+        color={dateTextColor[colorMode]}
         padding="5px"
         width="100%"
       >
-        Posted on {post.frontmatter.date}
+        Posted on {date}
       </Text>
 
-      <Text padding="10px" fontSize="lg">
-        {post.frontmatter.excerpt}
+      <Text padding="10px" fontSize="lg" color={textColor[colorMode]}>
+        {description}
       </Text>
-      <Box>
-        <NextLink href={`/blog/${post.slug}`}>
+      <Box justifyContent="space-between">
+        <NextLink href={`/blog/${slug}`}>
           <Button
-            size="md"
             variant="ghost"
-            cursor="pointer"
-            bg="none"
+            color={textColor[colorMode]}
             marginBottom="5px"
-            _hover={{ bg: navHoverBg[colorMode], color: "black" }}
             as="a"
+            _hover={{
+              bg: buttonHoverColor[colorMode],
+              color: buttonTextHoverColor[colorMode],
+            }}
           >
             Read More
           </Button>
         </NextLink>
+        {isDev && (
+          <Button
+            onClick={() => deletePost(id)}
+            color={textColor[colorMode]}
+            variant="ghost"
+            marginBottom="5px"
+            _hover={{
+              bg: buttonHoverColor[colorMode],
+              color: buttonTextHoverColor[colorMode],
+            }}
+            as="a"
+          >
+            Delete post
+          </Button>
+        )}
       </Box>
     </Stack>
   );

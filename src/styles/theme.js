@@ -1,5 +1,5 @@
-import { theme as chakraTheme } from "@chakra-ui/react";
-import { extendTheme } from "@chakra-ui/react";
+import { theme as chakraTheme, extendTheme } from "@chakra-ui/react";
+// import useKeyboardNav from "";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const fonts = {
@@ -26,27 +26,91 @@ const fonts = {
 };
 
 const breakpoints = createBreakpoints({
-  sm: "40em",
-  md: "52em",
-  lg: "64em",
-  xl: "70em",
+  sm: "576px",
+  md: "768px",
+  lg: "992px",
+  xl: "1200px",
 });
 
 const colors = {
-  primary: "#845EC2",
-  secondary: "#FF6F91",
-  highlight: "#00C9A7",
-  warning: "#FFC75F",
-  danger: "#C34A36",
+  primary: "#FFECD1",
+  secondary: "#001524",
+  highlightLight: "#15616D",
+  hightlightDark: "#FFECD1",
+  backgroundLight: "#FFECD1",
+  backgroundDark: "#001524",
+  textLight: "#001524",
+  textDark: "#FFECD1",
+  accentColor: "#15616D",
+  glassCardBgColorDark: "rgba(255, 255, 255, 0.1)",
+  glassCardBgColorLight: "rgba(46, 49, 49, .5)",
+  glassCardBoxShadowDark: "rgba(255, 255, 255, .1)",
+  glassCardBoxShadowLight: "rgba(255, 255, 255, .5)",
 };
+
+// const shadows = {
+//   outline: isKeyboardNavigating ? theme.shadows.outline : "none",
+// };
 
 const overrides = {
   ...chakraTheme,
   fonts,
   colors,
   breakpoints,
+  // shadows,
 };
 
-const customTheme = extendTheme(overrides);
+const Button = {
+  // Styles for the base style
+  baseStyle: {
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    borderRadius: "base",
+    cursor: "pointer",
+    // <-- border radius is same for all variants and sizes
+  },
+
+  sizes: {
+    sm: {
+      fontSize: "sm",
+      px: 4, // <-- px is short for paddingLeft and paddingRight
+      py: 3, // <-- py is short for paddingTop and paddingBottom
+    },
+    md: {
+      fontSize: "md",
+      px: 6,
+      py: 4,
+      margin: 0.5,
+    },
+  },
+  // Two variants: outline and solid
+  variants: {
+    outline: {
+      border: "2px solid",
+      borderColor: "purple.500",
+      color: "purple.500",
+    },
+    solid: {
+      bg: "purple.500",
+      color: "white",
+    },
+    nav: {
+      px: 6,
+      py: 4,
+      margin: 1,
+    },
+  },
+  // The default size and variant values
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+  },
+};
+
+const customTheme = extendTheme(overrides, {
+  components: {
+    Button,
+  },
+});
 
 export default customTheme;
