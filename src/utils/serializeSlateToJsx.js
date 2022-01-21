@@ -138,10 +138,11 @@ const Serialize = (node) => {
     case "heading-three":
       return (
         <ChakraHeading
+          margin={3}
           key={children}
           as="h3"
           color={textColor[colorMode]}
-          fontSize="xl"
+          fontSize={{ base: "xl", md: "2xl", xl: "3xl" }}
           lineHeight="2"
           fontWeight="bold"
         >
@@ -169,7 +170,7 @@ const Serialize = (node) => {
       return (
         <Box>
           {children}
-          <Box contentEditable={false} position="relative">
+          <Box contentEditable={false} position="relative" m={5}>
             <ChakraImage
               src={node.url}
               display="block"

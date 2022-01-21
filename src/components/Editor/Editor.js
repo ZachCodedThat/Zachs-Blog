@@ -212,6 +212,8 @@ const RemoveLinkButton = ({ format, icon }) => {
 };
 
 // INSERTING IMAGES
+// TODO: break out Image and link logic into separate components
+// TODO: Document those components
 
 const withImages = (editor) => {
   const { insertData, isVoid } = editor;
