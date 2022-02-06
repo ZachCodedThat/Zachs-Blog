@@ -20,6 +20,9 @@ const SHORTCUTS = {
   "######": "heading-six",
 };
 
+// This is how you can live edit using MD syntax.
+// The above Shortcuts are used to trigger the element types and display them within the editor.
+
 export default function withShortcuts(editor) {
   const { deleteBackward, insertText } = editor;
 

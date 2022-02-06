@@ -4,7 +4,6 @@ import { ChevronUpIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 import { textColor, bgColor, buttonHoverColor } from "@styles/colorModeStyles";
-// import Sidemenu from "./sideMenu";
 
 import DarkModeSwitch from "@components/DarkModeSwitch";
 
@@ -19,7 +18,7 @@ const Navbar = () => {
       setNavbar(true);
     }
   };
-  const isDev = process.env.NODE_ENV === "development";
+  const isDev = process.env.NODE_ENV === "development"; // used to only display routes to create or delete post in development mode.
 
   const scrollToTop = () => {
     window.scrollTo({

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import slugify from "@utils/slugify";
 
 import SlateEditor from "./Editor";
-
-// import SlateEditor from "./Editor";
 
 import {
   useColorMode,
@@ -15,7 +13,6 @@ import {
   Input,
   FormControl,
   FormLabel,
-  Text,
 } from "@chakra-ui/react";
 import {
   textColor,
@@ -25,8 +22,11 @@ import {
   editorBg,
 } from "@styles/colorModeStyles";
 
+/* 
+This Component is the main mechanism for creating a new blog post, it takes all of the necessary data and converts it to JSON and sends it to my DB.
+*/
+
 const CreatePost = () => {
-  // const toast = useToast(); // use the try/catch within the fetch and you need 2 one for passing and one for failing.
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -34,13 +34,17 @@ const CreatePost = () => {
     { type: "paragraph", children: [{ text: "" }] },
   ]);
 
-  const createPost = async (e) => {
+  /* This function calls the handler [[...id]] API route and uses the data to create a new post. 
+      - The "!" represents a required field.
+  */
+
+  const sendPost = async (e) => {
     e.preventDefault();
 
     if (!title || !date || !body || !description) {
       return;
     }
-    console.log("firing");
+
     await fetch("/api/blogPosts/", {
       method: "POST",
       body: JSON.stringify({
@@ -48,10 +52,9 @@ const CreatePost = () => {
         date,
         description,
         body,
-        slug: slugify(title),
+        slug: slugify(title), // This is the slug that is used to create the URL for the post by GSPaths.
       }),
     });
-    console.log("firing");
   };
 
   const { colorMode } = useColorMode();
@@ -68,7 +71,7 @@ const CreatePost = () => {
           Add Blog
         </Heading>
 
-        <form onSubmit={createPost}>
+        <form onSubmit={sendPost}>
           <FormControl id="title" isRequired>
             <Box>
               <FormLabel color={textColor[colorMode]}>Title</FormLabel>
@@ -141,16 +144,8 @@ const CreatePost = () => {
             Post
           </Button>
         </form>
-        {/* <Box textAlign="center" display="flex" justifyContent="center">
-          <Text color={textColor[colorMode]} verticalAlign="middle" padding={5}>
-            value: {JSON.stringify(body)}
-          </Text>
-        </Box> */}
       </Flex>
     </Stack>
   );
 };
 export default CreatePost;
-
-// this is a test for WSL git functions
-// and this is a second test

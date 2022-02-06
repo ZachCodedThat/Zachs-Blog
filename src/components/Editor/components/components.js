@@ -8,6 +8,10 @@ import {
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
 import { cx, css } from "emotion";
+
+// creates the navbar and its buttons/icons this was a bandaid fix for the toolbar I will update these to better use the chakra-ui components.
+// This was done so that I could use certain chakra-ui components and access the colorMode to be able to change the color of the buttons along with the theme.
+
 // eslint-disable-next-line react/display-name
 export const Button = React.forwardRef(
   ({ className, active, reversed, ...props }, ref) => (

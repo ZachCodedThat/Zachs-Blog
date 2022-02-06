@@ -1,5 +1,7 @@
 import { Editor, Element as SlateElement, Transforms } from "slate";
 
+// handles the logic for the toolbar buttons. You can use this logic elseware but it can get a bit messy.
+
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 export const toggleBlock = (editor, format) => {

@@ -11,4 +11,4 @@ const slugify = (text) =>
 
 export default slugify;
 
-// nifty function that creates slugs easily from a passed text value.
+// nifty function that creates slugs easily from a passed text value. handy for creating unifrom titles or url's.

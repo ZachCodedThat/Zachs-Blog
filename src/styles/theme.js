@@ -1,6 +1,8 @@
 import { theme as chakraTheme, extendTheme } from "@chakra-ui/react";
-// import useKeyboardNav from "";
+
 import { createBreakpoints } from "@chakra-ui/theme-tools";
+
+//This file sets up the theme for the website things like colors, fonts, breakpoints, etc.
 
 const fonts = {
   ...chakraTheme.fonts,
@@ -42,22 +44,18 @@ const colors = {
   textLight: "#001524",
   textDark: "#FFECD1",
   accentColor: "#15616D",
+  accentColor2: "#E4D6A7",
   glassCardBgColorDark: "rgba(255, 255, 255, 0.1)",
   glassCardBgColorLight: "rgba(46, 49, 49, .5)",
   glassCardBoxShadowDark: "rgba(255, 255, 255, .1)",
   glassCardBoxShadowLight: "rgba(255, 255, 255, .5)",
 };
 
-// const shadows = {
-//   outline: isKeyboardNavigating ? theme.shadows.outline : "none",
-// };
-
 const overrides = {
   ...chakraTheme,
   fonts,
   colors,
   breakpoints,
-  // shadows,
 };
 
 const Button = {

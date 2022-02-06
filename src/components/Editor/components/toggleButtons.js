@@ -7,6 +7,8 @@ import {
   isBlockActive,
 } from "../editor-utils/toggles";
 
+// the actual toolbar button component that is rendered in the toolbar on the main editor component
+
 export const BlockButton = ({ format, icon }) => {
   const editor = useSlate();
   return (

@@ -15,17 +15,26 @@ import {
   Image as ChakraImage,
 } from "@chakra-ui/react";
 
-// This function takes each node from the array of object returned by the body value from the DB and converts the all children even nested ones based on the
-//  type value passed by the node to the switch.
+/* 
 
-// It also takes marks from the text and applies them accordingly
+The function takes each node from the array of JSON objects returned by the "body" value from the DB and converts it and all children even nested ones according to the
+ type value passed by the node to the switch. It takes marks from the text and applies them accordingly as well including overlaps. 
+  - Those converted nodes are then returned as an array of JSX elements that is displayed on the screen of the individual posts page. 
 
+  Currently available types: H1-H3, Paragraphs, Bulleted lists / List items, Code, Links and Images 
+  Currently available marks: Bold, Italic, Underline and Code
+
+This is not the most efficient way to do this but it is the most straightforward and easy way to be able to adjust minor detials if needed in the future.
+
+
+TODO: Explore if there is a way to combine the component designs for the Editor and the Post page to make it more efficient.
+      - currently the elements for the editor are seperate from the posts page but are the same design.
+      - See if I can combine the elements into one file and import it to both the editor and the post page.
+*/
 const Serialize = (node) => {
   const { colorMode } = useColorMode();
 
-  // const boldRegex = new RegExp("[**][a-zA-Z]+[**]");
-  // const italicRegex = new RegExp("._[a-zA-Z]+._");
-  // const textRegex = new RegExp("[_*]+[a-zA-Z]+[_*]+");
+  // Checks for mark types and applies them accordingly.
 
   if (Text.isText(node)) {
     let string = node.text;
@@ -45,6 +54,10 @@ const Serialize = (node) => {
 
     return string;
   }
+
+  /* Recursivly calls the function to convert all children nodes 
+    nodes and returns a ready to display array of JSX elements in the 
+    order they need to be displayed in. */
 
   const children = node.children.map((n) => Serialize(n));
 
@@ -162,13 +175,13 @@ const Serialize = (node) => {
       );
     case "link":
       return (
-        <Link color="green.400" href={escapeHtml(node.url)}>
+        <Link key={children} color="green.400" href={escapeHtml(node.url)}>
           {children}
         </Link>
       );
     case "image":
       return (
-        <Box>
+        <Box key={children}>
           {children}
           <Box contentEditable={false} position="relative" m={5}>
             <ChakraImage

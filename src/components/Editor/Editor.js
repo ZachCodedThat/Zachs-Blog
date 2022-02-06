@@ -11,7 +11,6 @@ import {
   withReact,
   useSlate,
   useSlateStatic,
-  ReactEditor,
 } from "slate-react";
 
 import Element from "./components/elements";
@@ -37,7 +36,6 @@ import {
   FaItalic,
   FaUnderline,
   FaCode,
-  FaListOl,
   FaListUl,
   FaQuoteLeft,
   FaHeading,
@@ -46,6 +44,8 @@ import {
   FaImage,
 } from "react-icons/fa";
 import { Icon } from "./components/components";
+
+// If you are intersted in this editor and how it works please reach out I would love to talk about it!
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -81,7 +81,6 @@ export default function SlateEditor({ value, setValue }) {
           <MarkButton format="code" icon={<FaCode />} />
           <BlockButton format="heading-one" icon={<FaHeading />} />
           <BlockButton format="block-quote" icon={<FaQuoteLeft />} />
-
           <BlockButton format="bulleted-list" icon={<FaListUl />} />
           <AddLinkButton format="link" icon={<FaLink />} />
           <RemoveLinkButton icon={<FaUnlink />} />
@@ -90,7 +89,6 @@ export default function SlateEditor({ value, setValue }) {
         <Editable
           renderElement={renderElement}
           renderLeaf={renderLeaf}
-          // decorate={decorate}
           onKeyDown={(event) => {
             for (const hotkey in HOTKEYS) {
               if (isHotkey(hotkey, event)) {
@@ -107,6 +105,9 @@ export default function SlateEditor({ value, setValue }) {
     </>
   );
 }
+
+// added link functionality, essentially wraps a node in a link type and adds a url to it. Plain URLS and wrapped text are both supported.
+// The bulk of the code is from Slate's built in link functionality with some modifications to make it work some of the additional elements.
 
 const withInlines = (editor) => {
   const { insertData, insertText, isInline } = editor;
@@ -211,9 +212,7 @@ const RemoveLinkButton = ({ format, icon }) => {
   );
 };
 
-// INSERTING IMAGES
-// TODO: break out Image and link logic into separate components
-// TODO: Document those components
+// INSERTING IMAGES into the editor the same as links this is mostly the same code from the slateJS docs with some modifications
 
 const withImages = (editor) => {
   const { insertData, isVoid } = editor;
@@ -275,9 +274,13 @@ const InsertImageButton = ({ icon, format }) => {
   );
 };
 
+//small helper function to check if a string is an image url
+
 const isImageUrl = (url) => {
   if (!url) return false;
   if (!isUrl(url)) return false;
   const ext = new URL(url).pathname.split(".").pop();
   return imageExtensions.includes(ext);
 };
+
+// TODO: break out Image and link logic into separate components

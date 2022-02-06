@@ -1,3 +1,5 @@
+// various combinations of color modes and text colors to easily use in components.
+
 export const textColor = {
   light: "textLight",
   dark: "textDark",
@@ -38,6 +40,11 @@ export const iconTextHoverColor = {
 export const accentColor = {
   light: "accentColor",
   dark: "accentColor",
+};
+
+export const altAccentColor = {
+  light: "accentColor",
+  dark: "accentColor2",
 };
 export const borderColor = {
   light: "secondary",

@@ -14,9 +14,14 @@ import {
 } from "@chakra-ui/react";
 import { accentColor, dateTextColor, textColor } from "@styles/colorModeStyles";
 
-// post is passed from GSprops and is destructured to make it easier to work with within the JSX.
+/* 
+This component is used to display a single blog post.
 
-// body is the only complicated use case. Since it returns as an array of objects we need to map it through the Searilize function.
+The Individual post data is passed from GSprops and is destructured to make it easier to work with within the JSX.
+  body is the only complicated use case. Since it returns as an array of objects we need to map through it using a Searilize function. 
+  -src/utils/serializeSlateToJsx. 
+ 
+ */
 
 export default function PostPage({ post }) {
   const { title, date, body, slug, description, image } = post;
