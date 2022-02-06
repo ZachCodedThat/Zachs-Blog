@@ -1,4 +1,5 @@
 import Post from "@components/Post";
+import { NextSeo } from "next-seo";
 
 import { sortByID } from "@utils/index";
 import Navbar from "@components/Navbar";
@@ -11,6 +12,13 @@ const Home = ({ posts }) => {
 
   return (
     <>
+      <NextSeo
+        title="Welcome to my blog!"
+        description="This is my personal blog used to collect ideas and things I wana talk about."
+        openGraph={{
+          url: "https://www.zacharyp.blog/",
+        }}
+      />
       <Navbar />
       <Stack alignItems="center">
         <Flex

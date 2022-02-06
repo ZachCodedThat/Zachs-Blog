@@ -3,11 +3,13 @@ import Navbar from "@components/Navbar";
 import { Flex } from "@chakra-ui/react";
 import CreatePost from "@components/CreatePost";
 import NotFound from "@components/404";
+import { NextSeo } from "next-seo";
 
 const BlogPost = () => {
   const isDev = process.env.NODE_ENV === "development";
   return (
     <>
+      <NextSeo nofollow={true} />
       <Navbar />
       <Flex
         justifyContent="center"

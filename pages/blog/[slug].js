@@ -1,7 +1,7 @@
 import supabase from "@utils/initSupabase";
-import NextLink from "next/link";
 import Navbar from "@components/Navbar";
 import Serialize from "@utils/serializeSlateToJsx";
+import { NextSeo } from "next-seo";
 
 import {
   useColorMode,
@@ -9,30 +9,34 @@ import {
   Text,
   Flex,
   Box,
-  Link,
   Image,
-  Button,
   Stack,
 } from "@chakra-ui/react";
-import {
-  accentColor,
-  dateTextColor,
-  buttonHoverColor,
-  buttonTextHoverColor,
-  textColor,
-} from "@styles/colorModeStyles";
+import { accentColor, dateTextColor, textColor } from "@styles/colorModeStyles";
 
 // post is passed from GSprops and is destructured to make it easier to work with within the JSX.
 
 // body is the only complicated use case. Since it returns as an array of objects we need to map it through the Searilize function.
 
 export default function PostPage({ post }) {
-  const { title, image, date, body, id } = post;
+  const { title, date, body, slug, description, image } = post;
 
   const { colorMode } = useColorMode();
 
   return (
     <>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          url: "https://www.zacharyp.blog/blog/" + slug,
+          image: {
+            url: { image },
+            alt: "splash image for " + title,
+            type: "image/png",
+          },
+        }}
+      />
       <Navbar />
       <Stack
         as="main"
@@ -63,18 +67,9 @@ export default function PostPage({ post }) {
           Posted on {date}
         </Text>
 
-        <Image
-          src={image}
-          alt=""
-          padding="10px"
-          width={{ base: "90%", sm: "80%", md: "70%", lg: "60%" }}
-          alignSelf="center"
-        />
-
         <Box
           as="post-body"
           sp
-          // marginLeft="10px"
           align="flex-start"
           justifyContent="space-between"
           flexDirection={["column", "row"]}

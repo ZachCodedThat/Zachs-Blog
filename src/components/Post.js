@@ -1,11 +1,11 @@
 import NextLink from "next/link";
+import { NextSeo } from "next-seo";
 import {
   useColorMode,
   Button,
   Box,
   Heading,
   Text,
-  Flex,
   Stack,
   Image,
 } from "@chakra-ui/react";
@@ -31,65 +31,67 @@ const Post = ({ posts }) => {
   const { colorMode } = useColorMode();
 
   return (
-    <Stack
-      as="main"
-      border="solid"
-      borderColor={borderColor[colorMode]}
-      borderRadius="10px"
-      spacing={10}
-      m="0 auto 4rem auto"
-      maxWidth="700px"
-      px={2}
-    >
-      <Heading padding="10px" marginBottom="-5" color={textColor[colorMode]}>
-        {title}
-      </Heading>
-      <Image srcSet={image} alt="" borderRadius="10px" />
-
-      <Text
-        bg={accentColor[colorMode]}
-        color={dateTextColor[colorMode]}
-        padding="5px"
-        width="100%"
+    <>
+      <Stack
+        as="main"
+        border="solid"
+        borderColor={borderColor[colorMode]}
+        borderRadius="10px"
+        spacing={10}
+        m="0 auto 4rem auto"
+        maxWidth="700px"
+        px={2}
       >
-        Posted on {date}
-      </Text>
+        <Heading padding="10px" marginBottom="-5" color={textColor[colorMode]}>
+          {title}
+        </Heading>
+        <Image srcSet={image} alt="" borderRadius="10px" />
 
-      <Text padding="10px" fontSize="lg" color={textColor[colorMode]}>
-        {description}
-      </Text>
-      <Box justifyContent="space-between">
-        <NextLink href={`/blog/${slug}`}>
-          <Button
-            variant="ghost"
-            color={textColor[colorMode]}
-            marginBottom="5px"
-            as="a"
-            _hover={{
-              bg: buttonHoverColor[colorMode],
-              color: buttonTextHoverColor[colorMode],
-            }}
-          >
-            Read More
-          </Button>
-        </NextLink>
-        {isDev && (
-          <Button
-            onClick={() => deletePost(id)}
-            color={textColor[colorMode]}
-            variant="ghost"
-            marginBottom="5px"
-            _hover={{
-              bg: buttonHoverColor[colorMode],
-              color: buttonTextHoverColor[colorMode],
-            }}
-            as="a"
-          >
-            Delete post
-          </Button>
-        )}
-      </Box>
-    </Stack>
+        <Text
+          bg={accentColor[colorMode]}
+          color={dateTextColor[colorMode]}
+          padding="5px"
+          width="100%"
+        >
+          Posted on {date}
+        </Text>
+
+        <Text padding="10px" fontSize="lg" color={textColor[colorMode]}>
+          {description}
+        </Text>
+        <Box justifyContent="space-between">
+          <NextLink href={`/blog/${slug}`}>
+            <Button
+              variant="ghost"
+              color={textColor[colorMode]}
+              marginBottom="5px"
+              as="a"
+              _hover={{
+                bg: buttonHoverColor[colorMode],
+                color: buttonTextHoverColor[colorMode],
+              }}
+            >
+              Read More
+            </Button>
+          </NextLink>
+          {isDev && (
+            <Button
+              onClick={() => deletePost(id)}
+              color={textColor[colorMode]}
+              variant="ghost"
+              marginBottom="5px"
+              _hover={{
+                bg: buttonHoverColor[colorMode],
+                color: buttonTextHoverColor[colorMode],
+              }}
+              as="a"
+            >
+              Delete post
+            </Button>
+          )}
+        </Box>
+      </Stack>
+    </>
   );
 };
 
