@@ -189,7 +189,7 @@ const Serialize = (node) => {
               display="block"
               maxWidth="100%"
               maxHeight="20em"
-              alt={node.text}
+              alt="Image inside the post"
             />
           </Box>
         </Box>
