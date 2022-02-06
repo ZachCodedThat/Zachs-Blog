@@ -35,11 +35,13 @@ export default function PostPage({ post }) {
         description={description}
         openGraph={{
           url: "https://www.zacharyp.blog/blog/" + slug,
-          image: {
-            url: { image },
-            alt: "splash image for " + title,
-            type: "image/png",
-          },
+          images: [
+            {
+              url: image,
+              alt: "splash image for " + title,
+              type: "image/png",
+            },
+          ],
         }}
       />
       <Navbar />
