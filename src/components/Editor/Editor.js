@@ -81,7 +81,7 @@ export default function SlateEditor({ value, setValue }) {
           <MarkButton format="code" icon={<FaCode />} />
           <BlockButton format="heading-one" icon={<FaHeading />} />
           <BlockButton format="block-quote" icon={<FaQuoteLeft />} />
-          <BlockButton format="numbered-list" icon={<FaListOl />} />
+
           <BlockButton format="bulleted-list" icon={<FaListUl />} />
           <AddLinkButton format="link" icon={<FaLink />} />
           <RemoveLinkButton icon={<FaUnlink />} />

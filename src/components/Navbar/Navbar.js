@@ -55,6 +55,19 @@ const Navbar = () => {
                   Zachs Blog
                 </Button>
               </NextLink>
+              <NextLink href="https://www.zacharyp.dev/" passHref>
+                <Button
+                  as="a"
+                  color={textColor[colorMode]}
+                  variant="nav"
+                  _hover={{
+                    bg: buttonHoverColor[colorMode],
+                    color: bgColor[colorMode],
+                  }}
+                >
+                  Portfolio
+                </Button>
+              </NextLink>
               {isDev && (
                 <NextLink href="/postblog" passHref>
                   <Button

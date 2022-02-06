@@ -6,6 +6,7 @@ import {
   useColorMode,
   List as ChakraList,
   ListItem as ChakraListitem,
+  OrderedList,
   chakra,
   Link,
   // IconButton,
@@ -70,7 +71,7 @@ const Element = ({ attributes, children, element }) => {
       );
     case "numbered-list":
       return (
-        <ChakraList
+        <OrderedList
           key={children}
           color={textColor[colorMode]}
           display="block"
@@ -78,13 +79,14 @@ const Element = ({ attributes, children, element }) => {
           marginBlockEnd="1em"
           marginInlineStart="0px"
           paddingInlineStart="40px"
+          listStyleType="number"
         >
           {children}
-        </ChakraList>
+        </OrderedList>
       );
     case "list-item":
       return (
-        <ChakraListitem listStyleType="disc" fontSize="30px" {...attributes}>
+        <ChakraListitem listStyleType="disc" fontSize="20px" {...attributes}>
           {children}
         </ChakraListitem>
       );
