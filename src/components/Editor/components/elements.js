@@ -9,13 +9,11 @@ import {
   OrderedList,
   chakra,
   Link,
-  // IconButton,
-  // Button,
   Image as ChakraImage,
 } from "@chakra-ui/react";
 import { textColor } from "@styles/colorModeStyles";
 
-import { ImageIcon, Button } from "./components";
+import { Button } from "./components";
 
 import { Transforms } from "slate";
 import {
@@ -25,8 +23,9 @@ import {
   ReactEditor,
 } from "slate-react";
 
+// Same JSX elements as what is produced by the Serializer that are live previewed in the editor when conditions are met.
+
 const Element = ({ attributes, children, element }) => {
-  // const props = { attributes, children, element };
   const editor = useSlateStatic();
   const path = ReactEditor.findPath(editor, element);
 
