@@ -17,6 +17,22 @@ const Home = ({ posts }) => {
         description="This is my personal blog used to collect ideas and things I wana talk about."
         openGraph={{
           url: "https://www.zacharyp.blog/",
+          images: [
+            {
+              url: "https://res.cloudinary.com/dey85zjmf/image/upload/v1644170623/ZacharypBlogLight_s9fesz.png",
+              width: 1901,
+              height: 910,
+              alt: "ZacharyP.blog Light mode logo",
+              type: "image/png",
+            },
+            {
+              url: "https://res.cloudinary.com/dey85zjmf/image/upload/v1644170623/ZacharypBlogDark_bjjapj.png",
+              width: 1901,
+              height: 910,
+              alt: "ZacharyP.blog Dark mode logo",
+              type: "image/png",
+            },
+          ],
         }}
       />
       <Navbar />
