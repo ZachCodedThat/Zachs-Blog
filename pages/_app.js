@@ -1,6 +1,8 @@
 import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
 import customTheme from "@styles/theme";
 import GlobalStyle from "@styles/globalStyles";
+import { DefaultSeo } from "next-seo";
+import SEO from "../next-seo.config";
 
 import "focus-visible/dist/focus-visible";
 
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }) {
         }}
       >
         <GlobalStyle>
+          <DefaultSeo {...SEO} />
           <Component {...pageProps} />
         </GlobalStyle>
       </ColorModeProvider>

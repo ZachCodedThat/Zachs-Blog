@@ -34,11 +34,11 @@ export default function PostPage({ post }) {
         title={title}
         description={description}
         openGraph={{
-          url: "https://www.zacharyp.blog/blog/" + slug,
+          url: "https://www.zacharyp.blog/blog/" + { slug },
           images: [
             {
               url: image,
-              alt: "splash image for " + title,
+              alt: "splash image for " + { title },
               type: "image/png",
             },
           ],

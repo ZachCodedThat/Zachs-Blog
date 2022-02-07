@@ -7,6 +7,7 @@ export default {
     "https://www.zacharyp.dev/",
     "https://www.linkedin.com/in/zachary-przybilski/",
     "https://twitter.com/TweetZachBack",
+    "https://dev.to/zacharyp",
   ],
   openGraph: {
     type: "website",

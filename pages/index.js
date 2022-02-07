@@ -1,7 +1,7 @@
 import Post from "@components/Post";
 import { NextSeo } from "next-seo";
 
-import { sortByID } from "@utils/index";
+import { sortByID } from "@utils/sortByID";
 import Navbar from "@components/Navbar";
 import { Flex, Box, useColorMode, Stack } from "@chakra-ui/react";
 import supabase from "@utils/initSupabase";
