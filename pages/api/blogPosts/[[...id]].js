@@ -12,6 +12,14 @@ I plan to expand this into being able to live edit posts in the future which wil
   replace it in the DB.
 **/
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "4mb", // Set desired value here
+    },
+  },
+};
+
 const handler = nc({
   onError: (error, req, res, next) => {
     res.status(500).end();

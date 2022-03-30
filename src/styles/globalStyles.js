@@ -45,6 +45,10 @@ const GlobalStyle = ({ children }) => {
             line-height: 2;
             color: ${colorMode === "light" ? secondary : primary};
           }
+
+          em {
+            color: gray;
+          }
         `}
       />
       {children}
