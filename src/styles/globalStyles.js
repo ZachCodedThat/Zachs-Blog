@@ -29,7 +29,7 @@ const GlobalStyle = ({ children }) => {
           }
 
           html {
-            min-width: 356px;
+            min-width: fit-content;
             scroll-behavior: smooth;
           }
           #__next {

@@ -52,7 +52,7 @@ export default function PostPage({ post }) {
         justifyContent="center"
         alignItems="flex-start"
         m="0 auto 4rem auto"
-        maxWidth="100%"
+        maxWidth="fit-content"
         px={2}
       >
         <Flex>
@@ -75,8 +75,8 @@ export default function PostPage({ post }) {
         </Text>
 
         <Box
+          width="100%"
           as="post-body"
-          sp
           align="flex-start"
           justifyContent="space-between"
           flexDirection={["column", "row"]}
