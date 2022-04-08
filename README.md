@@ -2,7 +2,7 @@
 
 # The Run Down
 
-This is my personal blog platform complete with a customized Slate editor that is hooked to a Supabase DB and styled using the Chakra-UI component library.
+This is my personal blog platform complete with a customized Slate editor that is hooked to a Supabase DB and styled using the Chakra-UI component library. Fully SEO optimized using the Next-SEO package which handles both default and per page cases 
 
 
 # Built using
