@@ -4,7 +4,7 @@
 
 This is my personal blog platform complete with a customized Slate editor that is hooked to a Supabase server and styled using the Chakra-UI component library.
 
-# The Stack
+# Built using
 
 ## Next.js
 
