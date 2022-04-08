@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [![Website](https://img.shields.io/website?label=GitHubSearch&url=https%3A%2F%2Fwww.zacharyp.dev%2F)](https://zacharyp.blog/) 👈 Check it out!!
 
 # The Run Down
 
