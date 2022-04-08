@@ -1,4 +1,4 @@
-# [![Website](https://img.shields.io/website?label=GitHubSearch&url=https%3A%2F%2Fwww.zacharyp.dev%2F)](https://zacharyp.blog/) 👈 Check it out!!
+[![Website](https://img.shields.io/website?label=zacharyp.blog&url=https%3A%2F%2Fwww.zacharyp.blog%2F)](https://www.zacharyp.blog/) 👈 Check it out!!
 
 # The Run Down
 
