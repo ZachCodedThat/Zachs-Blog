@@ -60,7 +60,7 @@ const Post = ({ posts }) => {
           {description}
         </Text>
         <Box justifyContent="space-between">
-          <NextLink href={`/blog/${slug}`}>
+          <NextLink href={`/${slug}`}>
             <Button
               variant="ghost"
               color={textColor[colorMode]}

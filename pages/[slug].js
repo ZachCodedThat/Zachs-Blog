@@ -9,7 +9,6 @@ import {
   Text,
   Flex,
   Box,
-  Image,
   Stack,
 } from "@chakra-ui/react";
 import { accentColor, dateTextColor, textColor } from "@styles/colorModeStyles";
@@ -34,7 +33,7 @@ export default function PostPage({ post }) {
         title={title}
         description={description}
         openGraph={{
-          url: `https://www.zacharyp.blog/blog/${slug}`,
+          url: `https://www.zacharyp.blog/${slug}`,
           images: [
             {
               url: `${image}`,
